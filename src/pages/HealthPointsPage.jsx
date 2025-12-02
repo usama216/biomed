@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Phone, Gift, ShoppingBag, Award, Calendar, CheckCircle, ChevronDown, ChevronUp } from 'lucide-react';
 
 const HealthPointsPage = () => {
   const [expandedFaq, setExpandedFaq] = useState(0);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const faqs = [
     {
@@ -284,16 +288,16 @@ const HealthPointsPage = () => {
               <div className="w-12 h-12 bg-biomed-teal/20 rounded-full flex items-center justify-center">
                 <Mail className="text-biomed-navy" size={24} />
               </div>
-              <a href="mailto:info@biomed.com" className="text-lg font-semibold text-gray-900 hover:text-biomed-teal">
-                info@biomed.com
+              <a href="mailto:biomedinnovationpharmaceutical@gmail.com" className="text-lg font-semibold text-gray-900 hover:text-biomed-teal">
+                biomedinnovationpharmaceutical@gmail.com
               </a>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-biomed-teal/20 rounded-full flex items-center justify-center">
                 <Phone className="text-biomed-navy" size={24} />
               </div>
-              <a href="tel:0800777722" className="text-lg font-semibold text-gray-900 hover:text-biomed-teal">
-                0800 777 22
+              <a href="tel:+923344130451" className="text-lg font-semibold text-gray-900 hover:text-biomed-teal">
+                +923344130451
               </a>
             </div>
           </div>

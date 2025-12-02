@@ -1,0 +1,444 @@
+import React, { useState, useEffect } from 'react';
+import { Star, ShoppingCart, Grid, List, ChevronDown, ChevronUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+const OffersPage = ({ addToCart }) => {
+  const [priceRange, setPriceRange] = useState([0, 4780]);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(4780);
+  const [viewMode, setViewMode] = useState('grid');
+  const [itemsPerPage, setItemsPerPage] = useState(20);
+  const [sortBy, setSortBy] = useState('bestselling');
+  const [expandedCategories, setExpandedCategories] = useState(true);
+  const [inStock, setInStock] = useState(true);
+  const [outOfStock, setOutOfStock] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const categories = [
+    'All products', 'B Vitamins', 'Beauty', 'Best Selling', 'Blood Sugar Support',
+    'Bones & Joints', "Children's Health", 'Digestive Health', 'Essential Oils',
+    'Fertility Support', 'Fish Oil', 'Glutathione', 'Gummies', 'Hair Care',
+    'Heart Health', 'Herbal Support', 'Immune Support', 'Memory & Brain Support',
+    "Men's Health", 'Multivitamins'
+  ];
+
+  // Combo/Offer Products
+  const offerProducts = [
+    {
+      id: 'offer-1',
+      name: 'GLUTA FAIR + EXTRA-C',
+      rating: 4.8,
+      reviews: 145,
+      originalPrice: 3690,
+      discountedPrice: 3000,
+      image: '/assets/products/product-1.webp',
+      description: 'Skin brightening combo with powerful antioxidants',
+      inStock: true,
+      isFree: true,
+      salePercentage: 19
+    },
+    {
+      id: 'offer-2',
+      name: 'BIO GROW',
+      rating: 4.6,
+      reviews: 98,
+      originalPrice: 2890,
+      discountedPrice: 2400,
+      image: '/assets/products/product-2.webp',
+      description: 'Complete hair growth and strength formula',
+      inStock: true,
+      isFree: false,
+      salePercentage: 17
+    },
+    {
+      id: 'offer-3',
+      name: 'BIOTIN PLUS + BONEX-D',
+      rating: 4.9,
+      reviews: 203,
+      originalPrice: 3290,
+      discountedPrice: 2750,
+      image: '/assets/products/product-3.webp',
+      description: 'Hair care + Bone strength combo pack',
+      inStock: true,
+      isFree: true,
+      salePercentage: 16
+    },
+    {
+      id: 'offer-4',
+      name: 'TRYCEPTION + DURON PLUS',
+      rating: 4.7,
+      reviews: 167,
+      originalPrice: 4200,
+      discountedPrice: 3500,
+      image: '/assets/products/product-4.webp',
+      description: 'Fertility support for men - Complete solution',
+      inStock: true,
+      isFree: true,
+      salePercentage: 17
+    },
+    {
+      id: 'offer-5',
+      name: 'GENCELL + BIOTIN PLUS',
+      rating: 4.5,
+      reviews: 124,
+      originalPrice: 3890,
+      discountedPrice: 3200,
+      image: '/assets/products/product-5.webp',
+      description: 'Cell regeneration + Hair growth combo',
+      inStock: true,
+      isFree: false,
+      salePercentage: 18
+    },
+    {
+      id: 'offer-6',
+      name: 'DERMAZON + NUTRA-C',
+      rating: 4.8,
+      reviews: 189,
+      originalPrice: 3490,
+      discountedPrice: 2900,
+      image: '/assets/products/product-6.webp',
+      description: 'Skin care + Vitamin C immune support',
+      inStock: true,
+      isFree: true,
+      salePercentage: 17
+    },
+    {
+      id: 'offer-7',
+      name: 'VITAMAX + BIO GROW',
+      rating: 4.6,
+      reviews: 142,
+      originalPrice: 3790,
+      discountedPrice: 3100,
+      image: '/assets/products/product-7.webp',
+      description: 'Multivitamin + Hair growth complete pack',
+      inStock: true,
+      isFree: false,
+      salePercentage: 18
+    },
+    {
+      id: 'offer-8',
+      name: 'COLLAGEN',
+      rating: 4.9,
+      reviews: 256,
+      originalPrice: 4780,
+      discountedPrice: 3999,
+      image: '/assets/products/product-8.webp',
+      description: 'Premium collagen for skin, hair & joints',
+      inStock: true,
+      isFree: true,
+      salePercentage: 16
+    },
+    {
+      id: 'offer-9',
+      name: 'LEANAX + GREEN TEA COMPLEX',
+      rating: 4.7,
+      reviews: 178,
+      originalPrice: 3590,
+      discountedPrice: 2950,
+      image: '/assets/products/product-9.webp',
+      description: 'Weight management combo with metabolism boost',
+      inStock: true,
+      isFree: true,
+      salePercentage: 18
+    },
+    {
+      id: 'offer-10',
+      name: 'L-ARGININE + VITAMAX + TRIBULUS',
+      rating: 4.8,
+      reviews: 195,
+      originalPrice: 4490,
+      discountedPrice: 3750,
+      image: '/assets/products/product-10.webp',
+      description: 'Ultimate men\'s health & energy triple pack',
+      inStock: true,
+      isFree: true,
+      salePercentage: 16
+    },
+    {
+      id: 'offer-11',
+      name: 'NUCEPTION + OXITOL',
+      rating: 4.6,
+      reviews: 134,
+      originalPrice: 4190,
+      discountedPrice: 3450,
+      image: '/assets/products/product-1.webp',
+      description: 'Women\'s fertility support combo pack',
+      inStock: true,
+      isFree: false,
+      salePercentage: 18
+    },
+    {
+      id: 'offer-12',
+      name: 'OMEGA-3 + COQ10',
+      rating: 4.9,
+      reviews: 221,
+      originalPrice: 3990,
+      discountedPrice: 3300,
+      image: '/assets/products/product-2.webp',
+      description: 'Heart health & energy optimization duo',
+      inStock: true,
+      isFree: true,
+      salePercentage: 17
+    }
+  ];
+
+  const handleApplyPriceFilter = () => {
+    setPriceRange([minPrice, maxPrice]);
+  };
+
+  const renderStars = (rating) => {
+    return [...Array(5)].map((_, index) => (
+      <Star
+        key={index}
+        size={14}
+        className={index < Math.floor(rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}
+      />
+    ));
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <section className="relative h-[400px] md:h-[500px] overflow-hidden">
+        <img 
+          src="/assets/offers-hero-section-image.webp" 
+          alt="Offers & Discounts"
+          className="w-full h-full object-cover"
+        />
+      </section>
+
+      {/* Description Section */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4 md:px-8 lg:px-14">
+          <h2 className="text-3xl font-bold text-biomed-navy mb-4">OFFERS & DISCOUNTS</h2>
+          <p className="text-gray-700 text-lg leading-relaxed max-w-4xl">
+            Looking for an amazing discount offer? We bring to you some of the most exciting offers & discounts on your favorite products. Grab your favorite deal today and kick-start your journey of fitness & wellness.
+          </p>
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section className="py-12">
+        <div className="container mx-auto px-4 md:px-8 lg:px-14">
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Sidebar Filters */}
+            <aside className="w-full lg:w-64 flex-shrink-0">
+              {/* Categories */}
+              <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+                <button
+                  onClick={() => setExpandedCategories(!expandedCategories)}
+                  className="flex items-center justify-between w-full mb-4"
+                >
+                  <h3 className="text-lg font-bold text-gray-900">CATEGORIES</h3>
+                  {expandedCategories ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                </button>
+                {expandedCategories && (
+                  <ul className="space-y-2 max-h-96 overflow-y-auto">
+                    {categories.map((category, idx) => (
+                      <li key={idx}>
+                        <a 
+                          href="#" 
+                          className="text-gray-600 hover:text-biomed-teal transition-colors text-sm"
+                        >
+                          {category}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+
+              {/* Availability */}
+              <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h3 className="text-lg font-bold text-gray-900 mb-4">AVAILABILITY</h3>
+                <div className="space-y-2">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={inStock}
+                      onChange={() => setInStock(!inStock)}
+                      className="w-4 h-4 text-biomed-teal rounded focus:ring-biomed-teal"
+                    />
+                    <span className="text-sm text-gray-700">In Stock (11)</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={outOfStock}
+                      onChange={() => setOutOfStock(!outOfStock)}
+                      className="w-4 h-4 text-biomed-teal rounded focus:ring-biomed-teal"
+                    />
+                    <span className="text-sm text-gray-700">Out Of Stock (0)</span>
+                  </label>
+                </div>
+              </div>
+
+              {/* Price Range */}
+              <div className="bg-white rounded-lg shadow-md p-6">
+                <h3 className="text-lg font-bold text-gray-900 mb-4">PRICE</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="number"
+                      value={minPrice}
+                      onChange={(e) => setMinPrice(Number(e.target.value))}
+                      className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-biomed-teal text-sm"
+                      placeholder="Rs 0"
+                    />
+                    <span className="text-gray-500">-</span>
+                    <input
+                      type="number"
+                      value={maxPrice}
+                      onChange={(e) => setMaxPrice(Number(e.target.value))}
+                      className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-biomed-teal text-sm"
+                      placeholder="Rs 4780"
+                    />
+                  </div>
+                  <button
+                    onClick={handleApplyPriceFilter}
+                    className="w-full bg-biomed-navy hover:bg-biomed-navy/90 text-white py-2 rounded font-semibold text-sm transition-colors"
+                  >
+                    APPLY
+                  </button>
+                </div>
+              </div>
+            </aside>
+
+            {/* Main Content */}
+            <div className="flex-1">
+              {/* Controls Bar */}
+              <div className="bg-white rounded-lg shadow-md p-4 mb-6 flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <span className="text-sm font-semibold text-gray-700">VIEW AS:</span>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setViewMode('grid')}
+                      className={`p-2 rounded ${viewMode === 'grid' ? 'bg-biomed-teal text-white' : 'bg-gray-100 text-gray-600'}`}
+                    >
+                      <Grid size={18} />
+                    </button>
+                    <button
+                      onClick={() => setViewMode('list')}
+                      className={`p-2 rounded ${viewMode === 'list' ? 'bg-biomed-teal text-white' : 'bg-gray-100 text-gray-600'}`}
+                    >
+                      <List size={18} />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 flex-wrap">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-semibold text-gray-700">ITEMS PER PAGE:</span>
+                    <select
+                      value={itemsPerPage}
+                      onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                      className="px-3 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-biomed-teal text-sm"
+                    >
+                      <option value={20}>20</option>
+                      <option value={40}>40</option>
+                      <option value={60}>60</option>
+                    </select>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-semibold text-gray-700">SORT BY:</span>
+                    <select
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value)}
+                      className="px-3 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-biomed-teal text-sm"
+                    >
+                      <option value="bestselling">Best selling</option>
+                      <option value="priceLowHigh">Price: Low to High</option>
+                      <option value="priceHighLow">Price: High to Low</option>
+                      <option value="rating">Rating</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              {/* Products Grid */}
+              <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-6'}>
+                {offerProducts.map((product) => (
+                  <div 
+                    key={product.id} 
+                    className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all overflow-hidden group"
+                  >
+                    {/* Image Container */}
+                    <div className="relative">
+                      <Link to={`/product/${product.id}`}>
+                        <img 
+                          src={product.image} 
+                          alt={product.name}
+                          className="w-full h-64 object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </Link>
+                      {/* Badges */}
+                      <div className="absolute top-2 left-2 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                        Sale
+                      </div>
+                      {product.isFree && (
+                        <div className="absolute top-2 right-2 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                          FREE
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Product Info */}
+                    <div className="p-4">
+                      <Link to={`/product/${product.id}`}>
+                        <h3 className="font-bold text-gray-900 mb-2 hover:text-biomed-teal transition-colors line-clamp-2">
+                          {product.name}
+                        </h3>
+                      </Link>
+
+                      {/* Rating */}
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="flex">{renderStars(product.rating)}</div>
+                        <span className="text-xs text-gray-500">({product.reviews})</span>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-sm text-gray-600 mb-3 line-clamp-2">{product.description}</p>
+
+                      {/* Price */}
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="text-2xl font-bold text-biomed-navy">
+                          Rs.{product.discountedPrice.toLocaleString()}
+                        </span>
+                        <span className="text-sm text-gray-400 line-through">
+                          Rs.{product.originalPrice.toLocaleString()}
+                        </span>
+                      </div>
+
+                      {/* Actions */}
+                      <div className="flex items-center gap-2">
+                        <Link
+                          to={`/product/${product.id}`}
+                          className="flex-1 bg-biomed-navy hover:bg-biomed-navy/90 text-white py-2 rounded font-semibold text-sm text-center transition-colors"
+                        >
+                          VIEW PRODUCT
+                        </Link>
+                        <button
+                          onClick={() => addToCart && addToCart(product)}
+                          className="w-10 h-10 bg-biomed-teal hover:bg-biomed-teal/90 text-white rounded flex items-center justify-center transition-colors"
+                        >
+                          <ShoppingCart size={18} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default OffersPage;
+

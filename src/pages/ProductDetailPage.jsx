@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Star, Plus, Minus, ShoppingCart, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { useParams, Link } from 'react-router-dom';
 
@@ -15,6 +15,10 @@ const ProductDetailPage = ({ addToCart }) => {
     quality: false
   });
   const relatedScrollRef = useRef(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const toggleSection = (section) => {
     setExpandedSections(prev => ({
@@ -693,13 +697,7 @@ const ProductDetailPage = ({ addToCart }) => {
             </div>
 
             {/* Certifications */}
-            <div className="flex gap-1.5 flex-wrap">
-              {certifications.map((cert, idx) => (
-                <div key={idx} className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
-                  <span className="text-[10px] font-bold text-gray-600">{cert.length > 5 ? cert.substring(0, 3) : cert}</span>
-                </div>
-              ))}
-            </div>
+        
           </div>
         </div>
 

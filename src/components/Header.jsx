@@ -1,11 +1,56 @@
-import React, { useState } from 'react';
-import { ShoppingCart, User, Search, ChevronRight, ChevronDown } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ShoppingCart, User, Search, ChevronRight, ChevronDown, Menu, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Header = ({ cartCount = 0, onCartClick }) => {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuClosing, setIsMobileMenuClosing] = useState(false);
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const navigate = useNavigate();
+
+  // Handle smooth mobile menu close
+  const handleMobileMenuClose = () => {
+    setIsMobileMenuClosing(true);
+    setTimeout(() => {
+      setIsMobileMenuOpen(false);
+      setIsMobileMenuClosing(false);
+      setIsProductsOpen(false);
+      setActiveCategory(null);
+    }, 300); // Match animation duration
+  };
+
+  const handleMobileMenuToggle = () => {
+    if (isMobileMenuOpen) {
+      handleMobileMenuClose();
+    } else {
+      setIsMobileMenuOpen(true);
+    }
+  };
+
+  // Close mobile menu when screen size changes to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsMobileMenuOpen(false);
+        setIsMobileMenuClosing(false);
+        setIsMobileSearchOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMobileMenuOpen]);
 
   const productCategories = [
     {
@@ -58,19 +103,28 @@ const Header = ({ cartCount = 0, onCartClick }) => {
       {/* Main Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-4">
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={handleMobileMenuToggle}
+              className="lg:hidden p-2 hover:bg-gray-100 rounded-md transition-all"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
               <img 
                 src="/assets/Biomed.png" 
                 alt="BIOMED Logo" 
-                className="h-14 w-auto object-contain"
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain"
               />
             </Link>
 
-            {/* Search Bar */}
-            <div className="flex-1 max-w-xl mx-8">
-              <div className="relative">
+            {/* Desktop Search Bar */}
+            <div className="hidden lg:flex flex-1 max-w-xl mx-8">
+              <div className="relative w-full">
                 <input
                   type="text"
                   placeholder="Search the store"
@@ -80,29 +134,60 @@ const Header = ({ cartCount = 0, onCartClick }) => {
               </div>
             </div>
 
-            {/* Cart and Account */}
-            <div className="flex items-center gap-6">
+            {/* Right Actions */}
+            <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
+              {/* Mobile Search Button */}
+              <button 
+                onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)}
+                className="lg:hidden p-2 hover:bg-gray-100 rounded-md"
+                aria-label="Toggle search"
+              >
+                <Search size={20} />
+              </button>
+
+              {/* Cart */}
               <button 
                 onClick={onCartClick}
-                className="relative flex items-center gap-2 hover:text-biomed-teal transition-colors"
+                className="relative p-2 hover:text-biomed-teal transition-colors"
+                aria-label="Shopping cart"
               >
-                <ShoppingCart size={24} />
+                <ShoppingCart size={20} sm:size={24} />
                 {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                     {cartCount}
                   </span>
                 )}
               </button>
-              <button className="flex items-center gap-2 hover:text-biomed-teal">
+
+              {/* Account */}
+              <button className="hidden sm:flex items-center gap-2 hover:text-biomed-teal">
                 <User size={24} />
-                <span className="text-sm">My Account</span>
+                <span className="hidden md:inline text-sm">My Account</span>
+              </button>
+              <button className="sm:hidden p-2 hover:text-biomed-teal">
+                <User size={20} />
               </button>
             </div>
           </div>
+
+          {/* Mobile Search Bar */}
+          {isMobileSearchOpen && (
+            <div className="lg:hidden mt-4 animate-fadeIn">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search the store"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-biomed-teal transition-all"
+                  autoFocus
+                />
+                <Search className="absolute right-3 top-2.5 text-gray-400" size={20} />
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Navigation Menu */}
-        <nav className="bg-white border-t relative">
+        {/* Desktop Navigation Menu */}
+        <nav className="hidden lg:block bg-white border-t relative">
           <div className="max-w-7xl mx-auto px-4">
             <ul className="flex items-center gap-8 py-3 text-sm">
               <li><Link to="/" className="hover:text-biomed-teal font-medium">Home</Link></li>
@@ -166,17 +251,167 @@ const Header = ({ cartCount = 0, onCartClick }) => {
                 )}
               </li>
               
-              <li><a href="#" className="hover:text-biomed-teal">Offers</a></li>
-              <li><Link to="/health-points" className="hover:text-biomed-teal">Health Points</Link></li>
-              <li><a href="#" className="hover:text-biomed-teal">International</a></li>
-              <li><a href="#" className="hover:text-biomed-teal">Health Blog</a></li>
+              <li><Link to="/offers" className="hover:text-biomed-teal">Offers</Link></li>
+              {/* <li><Link to="/health-points" className="hover:text-biomed-teal">Health Points</Link></li> */}
+              {/* <li><a href="#" className="hover:text-biomed-teal">International</a></li> */}
+              {/* <li><a href="#" className="hover:text-biomed-teal">Health Blog</a></li> */}
               <li><Link to="/about" className="hover:text-biomed-teal">About Us</Link></li>
-              <li><a href="#" className="hover:text-biomed-teal">Careers</a></li>
+              {/* <li><a href="#" className="hover:text-biomed-teal">Careers</a></li> */}
               <li><Link to="/contact" className="hover:text-biomed-teal">Contact Us</Link></li>
             </ul>
           </div>
         </nav>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <>
+          {/* Backdrop */}
+          <div 
+            className={`lg:hidden fixed inset-0 bg-black/50 z-50 transition-opacity duration-300 ${
+              isMobileMenuClosing ? 'opacity-0' : 'opacity-100'
+            }`}
+            onClick={handleMobileMenuClose}
+          />
+          
+          {/* Mobile Menu */}
+          <div className={`lg:hidden fixed inset-y-0 left-0 top-0 bg-white z-[60] w-[85%] max-w-sm overflow-y-auto shadow-2xl ${
+            isMobileMenuClosing ? 'animate-slideOutLeft' : 'animate-slideInLeft'
+          }`}>
+            <nav className="px-4 py-6">
+              <ul className="space-y-4">
+                <li>
+                  <Link 
+                    to="/" 
+                    className="block py-2 text-base font-medium hover:text-biomed-teal transition-colors"
+                    onClick={handleMobileMenuClose}
+                  >
+                    Home
+                  </Link>
+                </li>
+              
+              {/* Mobile Products Menu */}
+              <li>
+                <button 
+                  onClick={() => setIsProductsOpen(!isProductsOpen)}
+                  className="w-full flex items-center justify-between py-2 text-base font-medium hover:text-biomed-teal transition-colors"
+                >
+                  All Products
+                  <ChevronDown size={16} className={`transition-transform duration-300 ${isProductsOpen ? 'rotate-180' : ''}`} />
+                </button>
+                
+                {isProductsOpen && (
+                  <div className="ml-4 mt-2 space-y-2 animate-fadeIn">
+                    {productCategories.map((category, idx) => (
+                      <div key={idx}>
+                        <button
+                          onClick={() => setActiveCategory(activeCategory === category.name ? null : category.name)}
+                          className="w-full flex items-center justify-between py-2 text-sm hover:text-biomed-teal transition-colors"
+                        >
+                          {category.name}
+                          <ChevronDown size={14} className={`transition-transform duration-300 ${activeCategory === category.name ? 'rotate-180' : ''}`} />
+                        </button>
+                        
+                        {activeCategory === category.name && (
+                          <div className="ml-4 mt-1 space-y-1 animate-fadeIn">
+                            {category.items.map((item, itemIdx) => (
+                              <Link
+                                key={itemIdx}
+                                to={`/products/${category.name.toLowerCase().replace(/[']/g, '').replace(/\s+/g, '-')}`}
+                                className="block py-2 text-sm text-gray-600 hover:text-biomed-teal transition-colors"
+                                onClick={handleMobileMenuClose}
+                              >
+                                {item}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </li>
+              
+              <li>
+                <Link 
+                  to="/offers" 
+                  className="block py-2 text-base font-medium hover:text-biomed-teal transition-colors"
+                  onClick={handleMobileMenuClose}
+                >
+                  Offers
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="/health-points" 
+                  className="block py-2 text-base font-medium hover:text-biomed-teal transition-colors"
+                  onClick={handleMobileMenuClose}
+                >
+                  Health Points
+                </Link>
+              </li>
+              <li>
+                <a 
+                  href="#" 
+                  className="block py-2 text-base font-medium hover:text-biomed-teal transition-colors"
+                  onClick={handleMobileMenuClose}
+                >
+                  International
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#" 
+                  className="block py-2 text-base font-medium hover:text-biomed-teal transition-colors"
+                  onClick={handleMobileMenuClose}
+                >
+                  Health Blog
+                </a>
+              </li>
+              <li>
+                <Link 
+                  to="/about" 
+                  className="block py-2 text-base font-medium hover:text-biomed-teal transition-colors"
+                  onClick={handleMobileMenuClose}
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <a 
+                  href="#" 
+                  className="block py-2 text-base font-medium hover:text-biomed-teal transition-colors"
+                  onClick={handleMobileMenuClose}
+                >
+                  Careers
+                </a>
+              </li>
+              <li>
+                <Link 
+                  to="/contact" 
+                  className="block py-2 text-base font-medium hover:text-biomed-teal transition-colors"
+                  onClick={handleMobileMenuClose}
+                >
+                  Contact Us
+                </Link>
+              </li>
+
+              {/* Mobile Account Link */}
+              <li className="sm:hidden border-t pt-4 mt-4">
+                <a 
+                  href="#" 
+                  className="flex items-center gap-2 py-2 text-base font-medium hover:text-biomed-teal transition-colors"
+                  onClick={handleMobileMenuClose}
+                >
+                  <User size={20} />
+                  My Account
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        </>
+      )}
     </header>
   );
 };

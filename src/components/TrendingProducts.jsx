@@ -131,7 +131,7 @@ const TrendingProducts = ({ addToCart }) => {
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-4xl font-bold text-gray-900">TRENDING NOW</h2>
           <div className="flex gap-4">
-            <button
+            {/* <button
               onClick={() => setActiveTab('bestselling')}
               className={`px-6 py-2 rounded-lg font-semibold transition-colors ${
                 activeTab === 'bestselling' 
@@ -150,7 +150,7 @@ const TrendingProducts = ({ addToCart }) => {
               }`}
             >
               NEW ARRIVALS
-            </button>
+            </button> */}
           </div>
         </div>
 

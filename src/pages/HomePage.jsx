@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Hero from '../components/Hero';
 import Certifications from '../components/Certifications';
 import HealthCategories from '../components/HealthCategories';
@@ -10,6 +10,10 @@ import LatestOffers from '../components/LatestOffers';
 import WorldwideFootprint from '../components/WorldwideFootprint';
 
 const HomePage = ({ addToCart }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Hero />
@@ -18,9 +22,9 @@ const HomePage = ({ addToCart }) => {
       <TrendingProducts addToCart={addToCart} />
       <HealthConcerns />
       <Mission />
-      <Science />
+      {/* <Science /> */}
       <LatestOffers addToCart={addToCart} />
-      <WorldwideFootprint />
+      {/* <WorldwideFootprint /> */}
     </>
   );
 };

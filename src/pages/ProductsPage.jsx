@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Star, ShoppingCart, Grid, List } from 'lucide-react';
 import { useParams, Link } from 'react-router-dom';
 
@@ -8,6 +8,10 @@ const ProductsPage = ({ addToCart }) => {
   const [viewMode, setViewMode] = useState('grid');
   const [itemsPerPage, setItemsPerPage] = useState(20);
   const [sortBy, setSortBy] = useState('bestselling');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const categories = [
     'All Products', 'B Vitamins', 'Beauty', 'Best Selling', 'Blood Sugar Support',
@@ -265,7 +269,7 @@ const ProductsPage = ({ addToCart }) => {
             </div>
 
             {/* Products Grid */}
-            <div className={`grid ${viewMode === 'grid' ? 'md:grid-cols-3 lg:grid-cols-4 gap-6' : 'grid-cols-1 gap-4'}`}>
+            <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'grid-cols-1 gap-4'}`}>
               {products.map((product) => (
                 <div key={product.id} className="bg-white rounded-lg shadow hover:shadow-xl transition-shadow overflow-hidden">
                   <div className="relative">

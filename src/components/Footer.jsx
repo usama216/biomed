@@ -8,11 +8,11 @@ const Footer = () => {
         <div className="grid md:grid-cols-5 gap-8 mb-8">
           {/* Company Info */}
           <div className="md:col-span-1">
-            <div className="mb-4">
+            <div className="mb-4 bg-white/10 backdrop-blur-sm p-3 rounded-lg inline-block">
               <img 
                 src="/assets/Biomed.png" 
                 alt="BIOMED Logo" 
-                className="h-12 w-auto object-contain brightness-0 invert"
+                className="h-16 w-auto object-contain"
               />
             </div>
             <p className="text-sm text-gray-400 mb-4">
@@ -21,11 +21,11 @@ const Footer = () => {
             <div className="space-y-2 text-sm text-gray-400 mb-4">
               <div className="flex items-center gap-2">
                 <Phone size={16} />
-                <span>+92 300 1234567</span>
+                <span>+923344130451</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail size={16} />
-                <span>info@biomed.com</span>
+                <span>biomedinnovationpharmaceutical@gmail.com</span>
               </div>
             </div>
             <div className="flex gap-3">
@@ -112,7 +112,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-gray-800 pt-6 text-center">
           <p className="text-sm text-gray-400">
-            © 2024 All Rights Reserved BIOMED Innovation Pharmaceuticals (Pvt) Ltd
+            © 2025 All Rights Reserved BIOMED Innovation Pharmaceuticals (Pvt) Ltd
           </p>
         </div>
       </div>

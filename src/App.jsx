@@ -9,6 +9,7 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import HealthPointsPage from './pages/HealthPointsPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import OffersPage from './pages/OffersPage';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -53,6 +54,7 @@ function App() {
           <Route path="/products" element={<ProductsPage addToCart={addToCart} />} />
           <Route path="/products/:category" element={<ProductsPage addToCart={addToCart} />} />
           <Route path="/product/:id" element={<ProductDetailPage addToCart={addToCart} />} />
+          <Route path="/offers" element={<OffersPage addToCart={addToCart} />} />
           <Route path="/health-points" element={<HealthPointsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />

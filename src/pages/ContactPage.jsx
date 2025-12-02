@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Phone, MessageCircle, Package, Mail, MapPin, ChevronRight } from 'lucide-react';
 
 const ContactPage = () => {
@@ -10,6 +10,10 @@ const ContactPage = () => {
   });
 
   const [expandedFaq, setExpandedFaq] = useState(-1);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +44,7 @@ const ContactPage = () => {
     <div className="min-h-screen bg-white">
       {/* Main Contact Section */}
       <section className="py-16 bg-gradient-to-br from-biomed-teal/5 to-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 md:px-8 lg:px-14">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             {/* Left Side - Info */}
             <div>
@@ -125,14 +129,14 @@ const ContactPage = () => {
 
       {/* Business Inquiries */}
       <section className="py-8 bg-white border-y">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 md:px-8 lg:px-14">
           <div className="flex flex-wrap items-center justify-center gap-6">
             <span className="text-xl font-bold text-biomed-navy">BUSINESS INQUIRIES</span>
             <a 
-              href="mailto:business@biomed.com" 
+              href="mailto:biomedinnovationpharmaceutical@gmail.com" 
               className="text-xl font-semibold text-biomed-teal hover:underline"
             >
-              BUSINESS@BIOMED.COM
+              BIOMEDINNOVATIONPHARMACEUTICAL@GMAIL.COM
             </a>
           </div>
         </div>
@@ -140,9 +144,9 @@ const ContactPage = () => {
 
       {/* Corporate Office */}
       <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 md:px-8 lg:px-14">
           <h2 className="text-4xl font-bold text-center text-biomed-navy mb-12">CORPORATE OFFICE</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Corporate Office */}
             <div className="bg-white p-6 rounded-lg shadow">
               <h3 className="text-lg font-bold text-biomed-navy mb-4">Corporate Office</h3>
@@ -155,14 +159,14 @@ const ContactPage = () => {
                   <Phone size={18} className="text-biomed-teal flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold">Call us</p>
-                    <p>0800 777 22</p>
+                    <p>+923344130451</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <Mail size={18} className="text-biomed-teal flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold">Email</p>
-                    <p>business@biomed.com</p>
+                    <p>biomedinnovationpharmaceutical@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -176,63 +180,21 @@ const ContactPage = () => {
                   <Phone size={18} className="text-biomed-teal flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold">Call us</p>
-                    <p>0800 777 22</p>
+                    <p>+923344130451</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <Phone size={18} className="text-biomed-teal flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold">Mobile</p>
-                    <p>+92-303-7772257</p>
+                    <p>+923344130451</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <Mail size={18} className="text-biomed-teal flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold">Email</p>
-                    <p>cs@biomed.com</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* International Inquiries */}
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="text-lg font-bold text-biomed-navy mb-4">International Inquiries</h3>
-              <div className="space-y-3 text-sm text-gray-700">
-                <div className="flex items-start gap-2">
-                  <Phone size={18} className="text-biomed-teal flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold">Mobile</p>
-                    <p>+92-303-7776382</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={18} className="text-biomed-teal flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold">Email</p>
-                    <p>export@biomed.com</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Toll Manufacturing */}
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="text-lg font-bold text-biomed-navy mb-4">Toll Manufacturing Inquiries</h3>
-              <div className="space-y-3 text-sm text-gray-700">
-                <div className="flex items-start gap-2">
-                  <Phone size={18} className="text-biomed-teal flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold">Mobile</p>
-                    <p>+92-303-7776382</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={18} className="text-biomed-teal flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold">Email</p>
-                    <p>export@biomed.com</p>
+                    <p>biomedinnovationpharmaceutical@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -242,11 +204,11 @@ const ContactPage = () => {
       </section>
 
       {/* International Regional Offices */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+      {/* <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 md:px-8 lg:px-14">
           <h2 className="text-4xl font-bold text-center text-biomed-navy mb-12">INTERNATIONAL REGIONAL OFFICES</h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Regional Office USA */}
+        
             <div className="bg-gray-50 p-8 rounded-lg shadow">
               <h3 className="text-xl font-bold text-biomed-navy mb-4">Regional Office USA</h3>
               <div className="flex items-start gap-3 text-gray-700">
@@ -259,7 +221,7 @@ const ContactPage = () => {
               </div>
             </div>
 
-            {/* Factory Address */}
+        
             <div className="bg-gray-50 p-8 rounded-lg shadow">
               <h3 className="text-xl font-bold text-biomed-navy mb-4">Factory Address</h3>
               <div className="flex items-start gap-3 text-gray-700">
@@ -273,18 +235,22 @@ const ContactPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQs */}
       <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-12">
-            <div>
-              <h2 className="text-4xl font-bold text-biomed-navy">
-                FREQUENTLY<br />ASKED<br />QUESTIONS
+        <div className="container mx-auto px-4 md:px-8 lg:px-14">
+          <div className="max-w-4xl mx-auto">
+            {/* Centered Heading */}
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-biomed-navy">
+                FREQUENTLY ASKED QUESTIONS
               </h2>
+              <div className="w-24 h-1 bg-biomed-teal mx-auto mt-6"></div>
             </div>
-            <div className="md:col-span-2 space-y-4">
+            
+            {/* Centered Questions */}
+            <div className="space-y-4">
               {faqs.map((faq, idx) => (
                 <div key={idx} className="bg-white rounded-lg shadow overflow-hidden">
                   <button
