@@ -74,7 +74,14 @@ body {
 /* Slow Marquee for Certificates */
 .animate-marquee-slow {
   display: flex;
-  animation: marquee 60s linear infinite;
+  animation: marquee 10s linear infinite;
+}
+
+/* Faster speed on mobile */
+@media (max-width: 768px) {
+  .animate-marquee-slow {
+    animation: marquee 5s linear infinite;
+  }
 }
 
 .pause-marquee:hover {
@@ -102,6 +109,18 @@ body {
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
+}
+
+/* Fix for iOS Safari flexbox width issues */
+@supports (-webkit-touch-callout: none) {
+  .flex-shrink-0 {
+    flex-shrink: 0 !important;
+  }
+  
+  /* Ensure proper overflow behavior on iOS */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* Custom scrollbar for horizontal scroll */

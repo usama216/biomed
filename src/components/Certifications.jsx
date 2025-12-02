@@ -27,10 +27,6 @@ const Certifications = () => {
         
         {/* Marquee Container */}
         <div className="relative">
-          {/* Gradient Overlays for fade effect */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-biomed-navy to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-biomed-navy to-transparent z-10"></div>
-          
           {/* Marquee Content - Duplicate for seamless loop */}
           <div className="flex animate-marquee-slow hover:pause-marquee">
             {/* First Set */}

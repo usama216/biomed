@@ -117,9 +117,9 @@ const LatestOffers = ({ addToCart }) => {
         </h2>
 
         <div className="relative overflow-hidden">
-          {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+          {/* Gradient Overlays - Hidden on Mobile */}
+          <div className="hidden md:block absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="hidden md:block absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
           
           <div 
             ref={scrollContainerRef}
@@ -128,7 +128,7 @@ const LatestOffers = ({ addToCart }) => {
             onMouseLeave={() => setIsAutoScrolling(true)}
           >
             {duplicatedOffers.map((offer, idx) => (
-              <div key={`offer-${idx}`} className="min-w-[320px] bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-shadow flex-shrink-0">
+              <div key={`offer-${idx}`} className="w-[320px] min-w-[320px] max-w-[320px] bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-shadow flex-shrink-0">
                 <div className="h-64 flex items-center justify-center bg-gray-50 relative overflow-hidden">
                   <img 
                     src={offer.image} 

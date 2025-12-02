@@ -343,48 +343,12 @@ const Header = ({ cartCount = 0, onCartClick }) => {
               </li>
               <li>
                 <Link 
-                  to="/health-points" 
-                  className="block py-2 text-base font-medium hover:text-biomed-teal transition-colors"
-                  onClick={handleMobileMenuClose}
-                >
-                  Health Points
-                </Link>
-              </li>
-              <li>
-                <a 
-                  href="#" 
-                  className="block py-2 text-base font-medium hover:text-biomed-teal transition-colors"
-                  onClick={handleMobileMenuClose}
-                >
-                  International
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#" 
-                  className="block py-2 text-base font-medium hover:text-biomed-teal transition-colors"
-                  onClick={handleMobileMenuClose}
-                >
-                  Health Blog
-                </a>
-              </li>
-              <li>
-                <Link 
                   to="/about" 
                   className="block py-2 text-base font-medium hover:text-biomed-teal transition-colors"
                   onClick={handleMobileMenuClose}
                 >
                   About Us
                 </Link>
-              </li>
-              <li>
-                <a 
-                  href="#" 
-                  className="block py-2 text-base font-medium hover:text-biomed-teal transition-colors"
-                  onClick={handleMobileMenuClose}
-                >
-                  Careers
-                </a>
               </li>
               <li>
                 <Link 
@@ -394,18 +358,6 @@ const Header = ({ cartCount = 0, onCartClick }) => {
                 >
                   Contact Us
                 </Link>
-              </li>
-
-              {/* Mobile Account Link */}
-              <li className="sm:hidden border-t pt-4 mt-4">
-                <a 
-                  href="#" 
-                  className="flex items-center gap-2 py-2 text-base font-medium hover:text-biomed-teal transition-colors"
-                  onClick={handleMobileMenuClose}
-                >
-                  <User size={20} />
-                  My Account
-                </a>
               </li>
             </ul>
           </nav>
