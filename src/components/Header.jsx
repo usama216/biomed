@@ -118,7 +118,7 @@ const Header = ({ cartCount = 0, onCartClick }) => {
               <img 
                 src="/assets/Biomed.png" 
                 alt="BIOMED Logo" 
-                className="h-10 sm:h-12 md:h-14 w-auto object-contain"
+                className="h-20 sm:h-20 md:h-20 lg:h-20 w-auto object-contain"
               />
             </Link>
 
