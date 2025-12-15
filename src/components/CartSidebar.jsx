@@ -45,7 +45,7 @@ const CartSidebar = ({ isOpen, onClose, cartItems, updateQuantity, removeItem })
                 {cartItems.map((item) => (
                   <div key={item.id} className="flex gap-4 bg-gray-50 p-3 rounded-lg">
                     <img 
-                      src={item.image} 
+                      src={item.image || (item.images && item.images[0]) || '/assets/products/main-product.jpeg'} 
                       alt={item.name}
                       className="w-20 h-20 object-contain rounded"
                     />

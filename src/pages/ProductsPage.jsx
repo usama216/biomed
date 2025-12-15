@@ -24,113 +24,80 @@ const ProductsPage = ({ addToCart }) => {
   const products = [
     {
       id: 'prod-1',
-      name: 'Premium Health Supplement',
+      name: 'Magnesium Glycinate | Magnizen',
       rating: 4.5,
       reviews: 120,
       originalPrice: 4500,
       discountedPrice: 3500,
-      image: '/assets/products/product-1.webp',
-      description: 'Complete daily health support formula',
+      image: '/assets/products/main-product.jpeg',
+      description: 'Calm the mind by supporting the nervous system. Relax muscles and nerves to promote restful sleep. Provide optimal support with its highly absorbable and gentle form.',
       inStock: true
     },
     {
       id: 'prod-2',
-      name: 'Biotin Plus Capsules',
+      name: 'Vanur Men',
       rating: 4.8,
       reviews: 89,
       originalPrice: 2000,
       discountedPrice: 1650,
-      image: '/assets/products/product-2.webp',
-      description: 'Hair, skin and nails support',
+      image: '/assets/products/product-1.jpeg',
+      description: 'Calm the mind by supporting the nervous system. Relax muscles and nerves to promote restful sleep. Provide optimal support with its highly absorbable and gentle form.',
       inStock: true
     },
     {
       id: 'prod-3',
-      name: 'Magnesium Complex',
+      name: 'Vanur Women',
       rating: 4.6,
       reviews: 156,
       originalPrice: 1800,
       discountedPrice: 1500,
-      image: '/assets/products/product-3.webp',
-      description: 'Muscle and nerve function support',
+      image: '/assets/products/product-2.jpeg',
+      description: 'Calm the mind by supporting the nervous system. Relax muscles and nerves to promote restful sleep. Provide optimal support with its highly absorbable and gentle form.',
       inStock: true
     },
     {
       id: 'prod-4',
-      name: 'Women Multivitamin',
+      name: 'Certeza BM-405 Digital Blood Pressure Monitor',
       rating: 4.7,
-      reviews: 203,
-      originalPrice: 2200,
-      discountedPrice: 1850,
-      image: '/assets/products/product-4.webp',
-      description: 'Comprehensive women\'s health formula',
+      reviews: 245,
+      originalPrice: 6500,
+      discountedPrice: 5950,
+      image: '/assets/products/other-product/Certeza-1.webp',
+      description: 'Accurately measures blood pressure and pulse on the arm. Features a soft cuff material for added comfort. Includes a hypertension indicator and an irregular heartbeat detector.',
       inStock: true
     },
     {
       id: 'prod-5',
-      name: 'Collagen Booster',
-      rating: 4.9,
-      reviews: 178,
-      originalPrice: 3500,
-      discountedPrice: 2900,
-      image: '/assets/products/product-5.webp',
-      description: 'Skin elasticity and joint support',
+      name: 'Bookang – B.P Apparatus Aneroid',
+      rating: 4.6,
+      reviews: 189,
+      originalPrice: 2800,
+      discountedPrice: 2500,
+      image: '/assets/products/other-product/Bookang.jpg',
+      description: 'Accurate blood pressure measurement with aneroid manometer. Comfortable NYLON cuff and durable LATEX components. Measures 0-300mmHg with +/-3mmHg accuracy.',
       inStock: true
     },
     {
       id: 'prod-6',
-      name: 'Immunity Support',
-      rating: 4.7,
-      reviews: 145,
-      originalPrice: 2800,
-      discountedPrice: 2300,
-      image: '/assets/products/product-6.webp',
-      description: 'Boost your immune system naturally',
-      inStock: false
+      name: 'Electric Heating Pad',
+      rating: 4.8,
+      reviews: 312,
+      originalPrice: 3500,
+      discountedPrice: 3200,
+      image: '/assets/products/other-product/electric-heating-pad.webp',
+      description: 'Extra soft surface, breathable and kind to skin. 6 temperature settings with overheating protection. Automatic switch-off after 90 minutes. Machine-washable.',
+      inStock: true
     },
     {
       id: 'prod-7',
-      name: 'Energy Booster Plus',
-      rating: 4.6,
-      reviews: 98,
-      originalPrice: 2400,
-      discountedPrice: 1950,
-      image: '/assets/products/product-7.webp',
-      description: 'All-day energy and vitality',
+      name: 'Certeza Nb-607 Nebulizer Machine',
+      rating: 4.9,
+      reviews: 428,
+      originalPrice: 5800,
+      discountedPrice: 5300,
+      image: '/assets/products/other-product/nebulizer-machne-crtza.webp',
+      description: 'Compact medical device for efficient medication delivery to bronchial lung passages. Helps treat asthma, allergies and respiratory disorders. 3 Year Warranty included.',
       inStock: true
-    },
-    {
-      id: 'prod-8',
-      name: 'Omega-3 Fish Oil',
-      rating: 4.8,
-      reviews: 234,
-      originalPrice: 3200,
-      discountedPrice: 2650,
-      image: '/assets/products/product-8.webp',
-      description: 'Heart and brain health support',
-      inStock: true
-    },
-    {
-      id: 'prod-9',
-      name: 'Vitamin D3 Complex',
-      rating: 4.5,
-      reviews: 167,
-      originalPrice: 1900,
-      discountedPrice: 1550,
-      image: '/assets/products/product-9.webp',
-      description: 'Bone and immune system support',
-      inStock: true
-    },
-    {
-      id: 'prod-10',
-      name: 'Probiotics Formula',
-      rating: 4.7,
-      reviews: 192,
-      originalPrice: 2600,
-      discountedPrice: 2100,
-      image: '/assets/products/product-10.webp',
-      description: 'Digestive health optimization',
-      inStock: false
     }
   ];
 
@@ -184,11 +151,11 @@ const ProductsPage = ({ addToCart }) => {
                 <h3 className="font-bold text-lg mb-4">AVAILABILITY</h3>
                 <label className="flex items-center gap-2 mb-2">
                   <input type="checkbox" className="w-4 h-4" defaultChecked />
-                  <span className="text-sm">In Stock (8)</span>
+                  <span className="text-sm">In Stock (7)</span>
                 </label>
                 <label className="flex items-center gap-2">
                   <input type="checkbox" className="w-4 h-4" />
-                  <span className="text-sm">Out Of Stock (2)</span>
+                  <span className="text-sm">Out Of Stock (0)</span>
                 </label>
               </div>
 

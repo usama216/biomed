@@ -3,9 +3,9 @@ import { Star, ShoppingCart, Grid, List, ChevronDown, ChevronUp } from 'lucide-r
 import { Link } from 'react-router-dom';
 
 const OffersPage = ({ addToCart }) => {
-  const [priceRange, setPriceRange] = useState([0, 4780]);
+  const [priceRange, setPriceRange] = useState([0, 4500]);
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(4780);
+  const [maxPrice, setMaxPrice] = useState(4500);
   const [viewMode, setViewMode] = useState('grid');
   const [itemsPerPage, setItemsPerPage] = useState(20);
   const [sortBy, setSortBy] = useState('bestselling');
@@ -25,163 +25,98 @@ const OffersPage = ({ addToCart }) => {
     "Men's Health", 'Multivitamins'
   ];
 
-  // Combo/Offer Products
+  // Combo/Offer Products - Based on 3 Major Products
   const offerProducts = [
     {
       id: 'offer-1',
-      name: 'GLUTA FAIR + EXTRA-C',
-      rating: 4.8,
-      reviews: 145,
-      originalPrice: 3690,
-      discountedPrice: 3000,
-      image: '/assets/products/product-1.webp',
-      description: 'Skin brightening combo with powerful antioxidants',
+      name: 'Magnesium Glycinate | Magnizen',
+      rating: 4.5,
+      reviews: 120,
+      originalPrice: 4500,
+      discountedPrice: 3500,
+      image: '/assets/products/main-product.jpeg',
+      description: 'Calm the mind by supporting the nervous system. Relax muscles and nerves to promote restful sleep. Provide optimal support with its highly absorbable and gentle form.',
       inStock: true,
-      isFree: true,
-      salePercentage: 19
+      isFree: false,
+      salePercentage: 22
     },
     {
       id: 'offer-2',
-      name: 'BIO GROW',
-      rating: 4.6,
-      reviews: 98,
-      originalPrice: 2890,
-      discountedPrice: 2400,
-      image: '/assets/products/product-2.webp',
-      description: 'Complete hair growth and strength formula',
+      name: 'Vanur Men',
+      rating: 4.8,
+      reviews: 89,
+      originalPrice: 2000,
+      discountedPrice: 1650,
+      image: '/assets/products/product-1.jpeg',
+      description: 'Calm the mind by supporting the nervous system. Relax muscles and nerves to promote restful sleep. Provide optimal support with its highly absorbable and gentle form.',
       inStock: true,
       isFree: false,
-      salePercentage: 17
+      salePercentage: 18
     },
     {
       id: 'offer-3',
-      name: 'BIOTIN PLUS + BONEX-D',
-      rating: 4.9,
-      reviews: 203,
-      originalPrice: 3290,
-      discountedPrice: 2750,
-      image: '/assets/products/product-3.webp',
-      description: 'Hair care + Bone strength combo pack',
+      name: 'Vanur Women',
+      rating: 4.6,
+      reviews: 156,
+      originalPrice: 1800,
+      discountedPrice: 1500,
+      image: '/assets/products/product-2.jpeg',
+      description: 'Calm the mind by supporting the nervous system. Relax muscles and nerves to promote restful sleep. Provide optimal support with its highly absorbable and gentle form.',
       inStock: true,
-      isFree: true,
-      salePercentage: 16
+      isFree: false,
+      salePercentage: 17
     },
     {
       id: 'offer-4',
-      name: 'TRYCEPTION + DURON PLUS',
+      name: 'Certeza BM-405 Digital Blood Pressure Monitor',
       rating: 4.7,
-      reviews: 167,
-      originalPrice: 4200,
-      discountedPrice: 3500,
-      image: '/assets/products/product-4.webp',
-      description: 'Fertility support for men - Complete solution',
+      reviews: 245,
+      originalPrice: 6500,
+      discountedPrice: 5950,
+      image: '/assets/products/other-product/Certeza-1.webp',
+      description: 'Accurately measures blood pressure and pulse on the arm. Features a soft cuff material for added comfort. Includes a hypertension indicator and an irregular heartbeat detector.',
       inStock: true,
-      isFree: true,
-      salePercentage: 17
+      isFree: false,
+      salePercentage: 8
     },
     {
       id: 'offer-5',
-      name: 'GENCELL + BIOTIN PLUS',
-      rating: 4.5,
-      reviews: 124,
-      originalPrice: 3890,
-      discountedPrice: 3200,
-      image: '/assets/products/product-5.webp',
-      description: 'Cell regeneration + Hair growth combo',
+      name: 'Bookang – B.P Apparatus Aneroid',
+      rating: 4.6,
+      reviews: 189,
+      originalPrice: 2800,
+      discountedPrice: 2500,
+      image: '/assets/products/other-product/Bookang.jpg',
+      description: 'Accurate blood pressure measurement with aneroid manometer. Comfortable NYLON cuff and durable LATEX components. Measures 0-300mmHg with +/-3mmHg accuracy.',
       inStock: true,
       isFree: false,
-      salePercentage: 18
+      salePercentage: 11
     },
     {
       id: 'offer-6',
-      name: 'DERMAZON + NUTRA-C',
+      name: 'Electric Heating Pad',
       rating: 4.8,
-      reviews: 189,
-      originalPrice: 3490,
-      discountedPrice: 2900,
-      image: '/assets/products/product-6.webp',
-      description: 'Skin care + Vitamin C immune support',
+      reviews: 312,
+      originalPrice: 3500,
+      discountedPrice: 3200,
+      image: '/assets/products/other-product/electric-heating-pad.webp',
+      description: 'Extra soft surface, breathable and kind to skin. 6 temperature settings with overheating protection. Automatic switch-off after 90 minutes. Machine-washable.',
       inStock: true,
-      isFree: true,
-      salePercentage: 17
+      isFree: false,
+      salePercentage: 9
     },
     {
       id: 'offer-7',
-      name: 'VITAMAX + BIO GROW',
-      rating: 4.6,
-      reviews: 142,
-      originalPrice: 3790,
-      discountedPrice: 3100,
-      image: '/assets/products/product-7.webp',
-      description: 'Multivitamin + Hair growth complete pack',
+      name: 'Certeza Nb-607 Nebulizer Machine',
+      rating: 4.9,
+      reviews: 428,
+      originalPrice: 5800,
+      discountedPrice: 5300,
+      image: '/assets/products/other-product/nebulizer-machne-crtza.webp',
+      description: 'Compact medical device for efficient medication delivery to bronchial lung passages. Helps treat asthma, allergies and respiratory disorders. 3 Year Warranty included.',
       inStock: true,
       isFree: false,
-      salePercentage: 18
-    },
-    {
-      id: 'offer-8',
-      name: 'COLLAGEN',
-      rating: 4.9,
-      reviews: 256,
-      originalPrice: 4780,
-      discountedPrice: 3999,
-      image: '/assets/products/product-8.webp',
-      description: 'Premium collagen for skin, hair & joints',
-      inStock: true,
-      isFree: true,
-      salePercentage: 16
-    },
-    {
-      id: 'offer-9',
-      name: 'LEANAX + GREEN TEA COMPLEX',
-      rating: 4.7,
-      reviews: 178,
-      originalPrice: 3590,
-      discountedPrice: 2950,
-      image: '/assets/products/product-9.webp',
-      description: 'Weight management combo with metabolism boost',
-      inStock: true,
-      isFree: true,
-      salePercentage: 18
-    },
-    {
-      id: 'offer-10',
-      name: 'L-ARGININE + VITAMAX + TRIBULUS',
-      rating: 4.8,
-      reviews: 195,
-      originalPrice: 4490,
-      discountedPrice: 3750,
-      image: '/assets/products/product-10.webp',
-      description: 'Ultimate men\'s health & energy triple pack',
-      inStock: true,
-      isFree: true,
-      salePercentage: 16
-    },
-    {
-      id: 'offer-11',
-      name: 'NUCEPTION + OXITOL',
-      rating: 4.6,
-      reviews: 134,
-      originalPrice: 4190,
-      discountedPrice: 3450,
-      image: '/assets/products/product-1.webp',
-      description: 'Women\'s fertility support combo pack',
-      inStock: true,
-      isFree: false,
-      salePercentage: 18
-    },
-    {
-      id: 'offer-12',
-      name: 'OMEGA-3 + COQ10',
-      rating: 4.9,
-      reviews: 221,
-      originalPrice: 3990,
-      discountedPrice: 3300,
-      image: '/assets/products/product-2.webp',
-      description: 'Heart health & energy optimization duo',
-      inStock: true,
-      isFree: true,
-      salePercentage: 17
+      salePercentage: 9
     }
   ];
 
@@ -262,7 +197,7 @@ const OffersPage = ({ addToCart }) => {
                       onChange={() => setInStock(!inStock)}
                       className="w-4 h-4 text-biomed-teal rounded focus:ring-biomed-teal"
                     />
-                    <span className="text-sm text-gray-700">In Stock (11)</span>
+                    <span className="text-sm text-gray-700">In Stock (7)</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
@@ -294,7 +229,7 @@ const OffersPage = ({ addToCart }) => {
                       value={maxPrice}
                       onChange={(e) => setMaxPrice(Number(e.target.value))}
                       className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-biomed-teal text-sm"
-                      placeholder="Rs 4780"
+                      placeholder="Rs 4500"
                     />
                   </div>
                   <button

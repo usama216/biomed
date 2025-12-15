@@ -23,7 +23,7 @@ const HomePage = ({ addToCart }) => {
       <HealthConcerns />
       <Mission />
       {/* <Science /> */}
-      <LatestOffers addToCart={addToCart} />
+      {/* <LatestOffers addToCart={addToCart} /> */}
       {/* <WorldwideFootprint /> */}
     </>
   );

@@ -5,9 +5,9 @@ const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const slides = [
-    '/assets/hero-section-banner/banner-image-1.webp',
-    '/assets/hero-section-banner/banner-image-2.webp',
-    '/assets/hero-section-banner/banner-image--3.webp',
+    '/assets/hero-section-banner/banner-image-1.jpg',
+    '/assets/hero-section-banner/banner-image-2.jpg',
+    '/assets/hero-section-banner/banner-image-3.jpg',
   ];
 
   // Auto-play carousel
@@ -27,7 +27,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-[500px] md:h-[600px] overflow-hidden">
+    <section className="relative h-[500px] md:h-[110vh] overflow-hidden">
       {/* Carousel Images */}
       <div className="absolute inset-0">
         {slides.map((image, index) => (
@@ -40,7 +40,7 @@ const Hero = () => {
             <img
               src={image}
               alt={`Banner ${index + 1}`}
-              className="w-full h-full object-cover"
+              className="w-full h-full"
             />
           </div>
         ))}

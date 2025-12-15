@@ -21,11 +21,12 @@ const Mission = () => {
 
           {/* Right Side - Image */}
           <div className="rounded-2xl overflow-hidden h-96 shadow-xl">
-            <img 
-              src="/assets/hero-section-banner/banner-image-2.webp" 
+            {/* <img 
+              src="/assets/products/product-video.mp4" 
               alt="Healthcare Mission" 
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-            />
+            /> */}
+            <video src="/assets/products/product-video.mp4" autoPlay muted loop className="w-full h-full hover:scale-105 transition-transform duration-500"></video>
           </div>
         </div>
       </div>

@@ -8,57 +8,75 @@ const LatestOffers = ({ addToCart }) => {
   const offers = [
     {
       id: 'offer-1',
-      name: 'Buy 2 Get 1 Free - Health Combo',
+      name: 'Magnesium Glycinate | Magnizen',
       price: 3500,
-      image: '/assets/products/product-8.webp'
+      image: '/assets/products/main-product.jpeg',
+      rating: 4.5,
+      reviews: 120,
+      originalPrice: 4500,
+      discountedPrice: 3500
     },
     {
       id: 'offer-2',
-      name: 'Immunity Booster Bundle',
-      price: 4200,
-      image: '/assets/products/product-9.webp',
+      name: 'Vanur Men',
+      price: 1650,
+      image: '/assets/products/product-1.jpeg',
       rating: 4.8,
-      reviews: 95,
-      originalPrice: 5200,
-      discountedPrice: 4200
+      reviews: 89,
+      originalPrice: 2000,
+      discountedPrice: 1650
     },
     {
       id: 'offer-3',
-      name: 'Complete Wellness Package',
-      price: 3800,
-      image: '/assets/products/product-10.webp',
-      rating: 4.7,
-      reviews: 112,
-      originalPrice: 4800,
-      discountedPrice: 3800
+      name: 'Vanur Women',
+      price: 1500,
+      image: '/assets/products/product-2.jpeg',
+      rating: 4.6,
+      reviews: 156,
+      originalPrice: 1800,
+      discountedPrice: 1500
     },
     {
       id: 'offer-4',
-      name: 'Energy & Vitality Combo',
-      price: 5500,
-      image: '/assets/products/product-1.webp',
-      rating: 4.9,
-      reviews: 88,
+      name: 'Certeza BM-405 Digital Blood Pressure Monitor',
+      price: 5950,
+      image: '/assets/products/other-product/Certeza-1.webp',
+      rating: 4.7,
+      reviews: 245,
       originalPrice: 6500,
-      discountedPrice: 5500
+      discountedPrice: 5950
     },
     {
       id: 'offer-5',
-      name: 'Daily Health Bundle',
-      price: 6200,
-      image: '/assets/products/product-2.webp',
+      name: 'Bookang – B.P Apparatus Aneroid',
+      price: 2500,
+      image: '/assets/products/other-product/Bookang.jpg',
       rating: 4.6,
-      reviews: 134,
-      originalPrice: 7500,
-      discountedPrice: 6200
+      reviews: 189,
+      originalPrice: 2800,
+      discountedPrice: 2500
     },
+    {
+      id: 'offer-6',
+      name: 'Electric Heating Pad',
+      price: 3200,
+      image: '/assets/products/other-product/electric-heating-pad.webp',
+      rating: 4.8,
+      reviews: 312,
+      originalPrice: 3500,
+      discountedPrice: 3200
+    },
+    {
+      id: 'offer-7',
+      name: 'Certeza Nb-607 Nebulizer Machine',
+      price: 5300,
+      image: '/assets/products/other-product/nebulizer-machne-crtza.webp',
+      rating: 4.9,
+      reviews: 428,
+      originalPrice: 5800,
+      discountedPrice: 5300
+    }
   ];
-
-  // Add missing properties to first offer
-  offers[0].rating = 4.5;
-  offers[0].reviews = 120;
-  offers[0].originalPrice = 4500;
-  offers[0].discountedPrice = 3500;
 
   // Duplicate offers for seamless infinite scroll
   const duplicatedOffers = [...offers, ...offers, ...offers];

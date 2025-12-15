@@ -9,67 +9,67 @@ const TrendingProducts = ({ addToCart }) => {
   const products = [
     {
       id: 'prod-1',
-      name: 'Premium Health Supplement',
+      name: 'Magnesium Glycinate | Magnizen',
       rating: 4.5,
       reviews: 120,
       originalPrice: 4500,
       discountedPrice: 3500,
-      image: '/assets/products/product-1.webp'
+      image: '/assets/products/main-product.jpeg'
     },
     {
       id: 'prod-2',
-      name: 'Biotin Plus Capsules',
+      name: 'Vanur Men',
       rating: 4.8,
       reviews: 89,
       originalPrice: 2000,
       discountedPrice: 1650,
-      image: '/assets/products/product-2.webp'
+      image: '/assets/products/product-1.jpeg'
     },
     {
       id: 'prod-3',
-      name: 'Magnesium Complex',
+      name: 'Vanur Women',
       rating: 4.6,
       reviews: 156,
       originalPrice: 1800,
       discountedPrice: 1500,
-      image: '/assets/products/product-3.webp'
+      image: '/assets/products/product-2.jpeg'
     },
     {
       id: 'prod-4',
-      name: 'Women Multivitamin',
+      name: 'Certeza BM-405 Digital Blood Pressure Monitor',
       rating: 4.7,
-      reviews: 203,
-      originalPrice: 2200,
-      discountedPrice: 1850,
-      image: '/assets/products/product-4.webp'
+      reviews: 245,
+      originalPrice: 6500,
+      discountedPrice: 5950,
+      image: '/assets/products/other-product/Certeza-1.webp'
     },
     {
       id: 'prod-5',
-      name: 'Collagen Booster',
-      rating: 4.9,
-      reviews: 178,
-      originalPrice: 3500,
-      discountedPrice: 2900,
-      image: '/assets/products/product-5.webp'
+      name: 'Bookang – B.P Apparatus Aneroid',
+      rating: 4.6,
+      reviews: 189,
+      originalPrice: 2800,
+      discountedPrice: 2500,
+      image: '/assets/products/other-product/Bookang.jpg'
     },
     {
       id: 'prod-6',
-      name: 'Immunity Support',
-      rating: 4.7,
-      reviews: 145,
-      originalPrice: 2800,
-      discountedPrice: 2300,
-      image: '/assets/products/product-6.webp'
+      name: 'Electric Heating Pad',
+      rating: 4.8,
+      reviews: 312,
+      originalPrice: 3500,
+      discountedPrice: 3200,
+      image: '/assets/products/other-product/electric-heating-pad.webp'
     },
     {
       id: 'prod-7',
-      name: 'Energy Booster Plus',
-      rating: 4.6,
-      reviews: 98,
-      originalPrice: 2400,
-      discountedPrice: 1950,
-      image: '/assets/products/product-7.webp'
-    },
+      name: 'Certeza Nb-607 Nebulizer Machine',
+      rating: 4.9,
+      reviews: 428,
+      originalPrice: 5800,
+      discountedPrice: 5300,
+      image: '/assets/products/other-product/nebulizer-machne-crtza.webp'
+    }
   ];
 
   // Duplicate products for seamless infinite scroll

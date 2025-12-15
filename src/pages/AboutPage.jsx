@@ -76,9 +76,9 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
+      <section className="relative h-[110vh] overflow-hidden">
         <img 
-          src="/assets/hero-section-banner/banner-image-2.webp" 
+          src="/assets/hero-section-banner/banner-image-1.jpg" 
           alt="Manufacturing Facility"
           className="w-full h-full object-cover"
         />
@@ -122,14 +122,19 @@ const AboutPage = () => {
           </div>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="grid grid-cols-2 gap-4">
-              {[1, 2, 3, 4].map((num) => (
+              {[
+                { num: 1, image: '/assets/products/main-product.jpeg' },
+                { num: 2, image: '/assets/products/product-1.jpeg' },
+                { num: 3, image: '/assets/products/product-2.jpeg' },
+                { num: 3, image: '/assets/products/main-product-v2.jpeg' }
+              ].map((item) => (
                 <div 
-                  key={num} 
+                  key={item.num} 
                   className="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:scale-105 cursor-pointer group"
                 >
                   <img 
-                    src={`/assets/products/product-${num}.webp`} 
-                    alt={`Manufacturing ${num}`} 
+                    src={item.image} 
+                    alt={`Manufacturing ${item.num}`} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
                   />
                 </div>
@@ -234,15 +239,26 @@ const AboutPage = () => {
           {/* Product Showcase Carousel */}
           <div className="relative overflow-hidden">
             <div className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide hover:scrollbar-default">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+              {[
+                { num: 1, image: '/assets/products/main-product.jpeg', name: 'Magnesium Glycinate | Magnizen' },
+                { num: 2, image: '/assets/products/product-1.jpeg', name: 'Vanur Men' },
+                { num: 3, image: '/assets/products/product-2.jpeg', name: 'Vanur Women' },
+                { num: 1, image: '/assets/products/main-product.jpeg', name: 'Magnesium Glycinate | Magnizen' },
+                { num: 2, image: '/assets/products/product-1.jpeg', name: 'Vanur Men' },
+                { num: 3, image: '/assets/products/product-2.jpeg', name: 'Vanur Women' },
+                { num: 1, image: '/assets/products/main-product.jpeg', name: 'Magnesium Glycinate | Magnizen' },
+                { num: 2, image: '/assets/products/product-1.jpeg', name: 'Vanur Men' },
+                { num: 3, image: '/assets/products/product-2.jpeg', name: 'Vanur Women' }
+            
+              ].map((item) => (
                 <div 
-                  key={num} 
+                  key={item.num} 
                   className="min-w-[200px] flex-shrink-0 group"
                 >
                   <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-2xl transition-all transform hover:-translate-y-2 cursor-pointer">
                     <img 
-                      src={`/assets/products/product-${num}.webp`} 
-                      alt={`Product ${num}`}
+                      src={item.image} 
+                      alt={item.name}
                       className="w-full h-56 object-contain group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>

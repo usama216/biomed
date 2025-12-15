@@ -6,6 +6,7 @@ const ProductDetailPage = ({ addToCart }) => {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [isVideoMode, setIsVideoMode] = useState(id === 'prod-1'); // Video mode for prod-1 only
   const [expandedSections, setExpandedSections] = useState({
     details: true,
     directions: true,
@@ -18,7 +19,10 @@ const ProductDetailPage = ({ addToCart }) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    // Reset video mode when product changes
+    setIsVideoMode(id === 'prod-1');
+    setSelectedImage(0);
+  }, [id]);
 
   const toggleSection = (section) => {
     setExpandedSections(prev => ({
@@ -49,82 +53,82 @@ const ProductDetailPage = ({ addToCart }) => {
   const productsDatabase = {
     'prod-1': {
       id: 'prod-1',
-      name: 'Premium Health Supplement',
+      name: 'Magnesium Glycinate | Magnizen',
       rating: 4.5,
       reviews: 132,
       questions: 5,
       originalPrice: 4500,
       discountedPrice: 3500,
+      video: '/assets/products/product-video.mp4', // Main video for prod-1
       images: [
-        '/assets/products/product-1.webp',
-        '/assets/products/product-2.webp',
-        '/assets/products/product-3.webp'
+        '/assets/products/main-product.jpeg',
+        '/assets/products/main-product-v2.jpeg',
+        '/assets/products/main-product-v3.jpeg'
       ],
       packSize: '60 Tablets',
       wellnessCoins: 3500,
       inStock: true,
       helps: [
-        'Provide comprehensive daily nutritional support',
-        'Boost energy levels and reduce fatigue',
-        'Support immune system and overall wellness'
+        'Calm the mind by supporting the nervous system',
+        'Relax muscles and nerves to promote restful sleep',
+        'Provide optimal support with its highly absorbable and gentle form'
       ],
-      details: 'This premium health supplement is formulated with scientifically-backed ingredients to support your overall wellness. It provides comprehensive nutritional support for energy, immunity, and daily performance. Each tablet is carefully crafted to deliver optimal bioavailability and absorption.',
-      directions: 'Take 1 tablet daily with meal or as directed by a healthcare professional. Do not exceed the recommended daily dose.',
+      details: 'Nutrifactor\'s Magnizen features Magnesium Glycinate, a highly bioavailable form of magnesium that the body can absorb and utilize effectively. As a chelated form, Magnesium Glycinate is well-tolerated by digestive system. This essential mineral acts a cofactor for over 600 plus enzymatic reactions to support various bodily functions, including promoting muscle relaxation, maintaining a calm and balanced mood, and enhancing sleep quality. Additionally, it reduces occasional stress. Magnesium also contributes to Calcium regulation by stimulating calcitonin secretion, which promotes calcium influx into the bones, aiding in optimal bone mineralization and overall bone health. It supports cognitive and neuromuscular functions, promotes cardiovascular health, and contributes to energy production and metabolic processes.',
+      directions: 'Take 1-2 tablets daily, preferably with meal or as directed by a physician. Do not exceed the recommended daily dose.',
       ingredients: [
-        { name: 'Multivitamin Complex', amount: '1000 mg' },
-        { name: 'Vitamin C', amount: '100 mg' },
-        { name: 'Vitamin E', amount: '50 IU' }
+        { name: 'Magnesium Glycinate', amount: '400 mg' },
+        { name: 'Magnesium Citrate', amount: '200 mg' },
+        { name: 'Vitamin B6', amount: '10 mg' }
       ]
     },
     'prod-2': {
       id: 'prod-2',
-      name: 'Biotin Plus Capsules',
+      name: 'Vanur Men',
       rating: 4.8,
       reviews: 89,
       questions: 3,
       originalPrice: 2000,
       discountedPrice: 1650,
       images: [
-        '/assets/products/product-2.webp',
-        '/assets/products/product-4.webp'
+        '/assets/products/product-1.jpeg'
       ],
       packSize: '30 Capsules',
       wellnessCoins: 1650,
       inStock: true,
       helps: [
-        'Support healthy hair growth and prevent hair loss',
-        'Strengthen nails and improve skin health',
-        'Promote keratin production for hair and nails'
+        'Calm the mind by supporting the nervous system',
+        'Relax muscles and nerves to promote restful sleep',
+        'Provide optimal support with its highly absorbable and gentle form'
       ],
-      details: 'Biotin Plus is a high-potency biotin supplement designed to support healthy hair, skin, and nails. With 10,000 mcg of biotin per capsule, it helps strengthen hair follicles, improve nail structure, and promote radiant skin.',
-      directions: 'Take 1 capsule daily with water, preferably with a meal. Consistent use for 2-3 months recommended for best results.',
+      details: 'Nutrifactor\'s Magnizen features Magnesium Glycinate, a highly bioavailable form of magnesium that the body can absorb and utilize effectively. As a chelated form, Magnesium Glycinate is well-tolerated by digestive system. This essential mineral acts a cofactor for over 600 plus enzymatic reactions to support various bodily functions, including promoting muscle relaxation, maintaining a calm and balanced mood, and enhancing sleep quality. Additionally, it reduces occasional stress. Magnesium also contributes to Calcium regulation by stimulating calcitonin secretion, which promotes calcium influx into the bones, aiding in optimal bone mineralization and overall bone health. It supports cognitive and neuromuscular functions, promotes cardiovascular health, and contributes to energy production and metabolic processes.',
+      directions: 'Take 1-2 tablets daily, preferably with meal or as directed by a physician. Do not exceed the recommended daily dose.',
       ingredients: [
-        { name: 'Biotin (Vitamin B7)', amount: '10,000 mcg' },
-        { name: 'Vitamin E', amount: '30 IU' },
-        { name: 'Zinc', amount: '15 mg' }
+        { name: 'Magnesium Glycinate', amount: '400 mg' },
+        { name: 'Magnesium Citrate', amount: '200 mg' },
+        { name: 'Vitamin B6', amount: '10 mg' }
       ]
     },
     'prod-3': {
       id: 'prod-3',
-      name: 'Magnesium Complex',
+      name: 'Vanur Women',
       rating: 4.6,
       reviews: 156,
       questions: 8,
       originalPrice: 1800,
       discountedPrice: 1500,
       images: [
-        '/assets/products/product-3.webp'
+        '/assets/products/product-2.jpeg'
       ],
       packSize: '90 Tablets',
       wellnessCoins: 1500,
       inStock: true,
       helps: [
-        'Support muscle relaxation and reduce cramps',
-        'Promote better sleep quality and relaxation',
-        'Maintain healthy nerve function and bone density'
+        'Calm the mind by supporting the nervous system',
+        'Relax muscles and nerves to promote restful sleep',
+        'Provide optimal support with its highly absorbable and gentle form'
       ],
-      details: 'Magnesium Complex provides a highly absorbable form of magnesium to support over 300 biochemical reactions in your body. Essential for muscle function, nerve transmission, and energy production.',
-      directions: 'Take 2 tablets daily, preferably one in the morning and one in the evening with meals.',
+      details: 'Nutrifactor\'s Magnizen features Magnesium Glycinate, a highly bioavailable form of magnesium that the body can absorb and utilize effectively. As a chelated form, Magnesium Glycinate is well-tolerated by digestive system. This essential mineral acts a cofactor for over 600 plus enzymatic reactions to support various bodily functions, including promoting muscle relaxation, maintaining a calm and balanced mood, and enhancing sleep quality. Additionally, it reduces occasional stress. Magnesium also contributes to Calcium regulation by stimulating calcitonin secretion, which promotes calcium influx into the bones, aiding in optimal bone mineralization and overall bone health. It supports cognitive and neuromuscular functions, promotes cardiovascular health, and contributes to energy production and metabolic processes.',
+      directions: 'Take 1-2 tablets daily, preferably with meal or as directed by a physician. Do not exceed the recommended daily dose.',
       ingredients: [
         { name: 'Magnesium Glycinate', amount: '400 mg' },
         { name: 'Magnesium Citrate', amount: '200 mg' },
@@ -133,202 +137,121 @@ const ProductDetailPage = ({ addToCart }) => {
     },
     'prod-4': {
       id: 'prod-4',
-      name: 'Women Multivitamin',
+      name: 'Certeza BM-405 Digital Blood Pressure Monitor',
       rating: 4.7,
-      reviews: 203,
-      questions: 6,
-      originalPrice: 2200,
-      discountedPrice: 1850,
+      reviews: 245,
+      questions: 12,
+      originalPrice: 6500,
+      discountedPrice: 5950,
       images: [
-        '/assets/products/product-4.webp',
-        '/assets/products/product-5.webp',
-        '/assets/products/product-6.webp'
+        '/assets/products/other-product/Certeza-1.webp',
+        '/assets/products/other-product/Certeza-2.webp',
+        '/assets/products/other-product/Certeza-3.webp'
       ],
-      packSize: '60 Tablets',
-      wellnessCoins: 1850,
+      packSize: '1 Unit',
+      wellnessCoins: 5950,
       inStock: true,
       helps: [
-        'Support women\'s hormonal balance and energy',
-        'Provide essential nutrients for reproductive health',
-        'Strengthen bones and support immune function'
+        'Accurately measures blood pressure and pulse on the arm',
+        'Features a soft cuff material for added comfort during measurements',
+        'Includes a hypertension indicator and an irregular heartbeat detector'
       ],
-      details: 'Specially formulated for women, this comprehensive multivitamin provides essential nutrients to support hormonal balance, energy levels, and overall wellness. Contains iron, calcium, and folic acid tailored for women\'s needs.',
-      directions: 'Take 1 tablet daily with breakfast or as directed by your healthcare provider.',
+      details: 'Certeza BM-405 Digital Blood Pressure Monitor is a sophisticated and user-friendly device designed for accurate and reliable blood pressure monitoring. Ideal for both home and clinical use, it features a comfortable arm cuff that adjusts to fit most adults, ensuring precise readings. The monitor is equipped with an easy-to-read large LCD, showing clear and accurate measurements of systolic and diastolic blood pressure, along with pulse rate. It includes essential health indicators like an irregular heartbeat detector and a hypertension alert. Features: Universal cuff fits arm circumferences from 22 to 42 cm. Utilizes a third-generation inflation mechanism. Calculates average values and has a memory function with date and time for 2 users, storing 60 readings each. Simple one-button automatic operation for user convenience. Powered by long-lasting alkaline batteries. Classified as a medical device. Automatic shut-off and error signal in case of incorrect application. Comes with a carrying bag; an optional adapter is available.',
+      directions: 'Follow the user manual instructions for proper use. Place the cuff on your upper arm, press the start button, and wait for the automatic measurement to complete. Do not use if you have any medical conditions without consulting your physician.',
       ingredients: [
-        { name: 'Women\'s Multi Blend', amount: '800 mg' },
-        { name: 'Iron', amount: '18 mg' },
-        { name: 'Folic Acid', amount: '400 mcg' },
-        { name: 'Calcium', amount: '200 mg' }
+        { name: 'Upper arm blood pressure monitor with cuff', amount: '1 Unit' },
+        { name: 'Carrying bag', amount: '1 Unit' },
+        { name: 'AAA batteries', amount: '4 Units' },
+        { name: 'User manual', amount: '1 Unit' }
       ]
     },
     'prod-5': {
       id: 'prod-5',
-      name: 'Collagen Booster',
-      rating: 4.9,
-      reviews: 178,
-      questions: 4,
-      originalPrice: 3500,
-      discountedPrice: 2900,
+      name: 'Bookang – B.P Apparatus Aneroid',
+      rating: 4.6,
+      reviews: 189,
+      questions: 8,
+      originalPrice: 2800,
+      discountedPrice: 2500,
       images: [
-        '/assets/products/product-5.webp',
-        '/assets/products/product-7.webp'
+        '/assets/products/other-product/Bookang.jpg'
       ],
-      packSize: '30 Sachets',
-      wellnessCoins: 2900,
+      packSize: '1 Unit',
+      wellnessCoins: 2500,
       inStock: true,
       helps: [
-        'Improve skin elasticity and reduce wrinkles',
-        'Support joint health and flexibility',
-        'Promote healthy hair and nail growth'
+        'Accurate blood pressure measurement with aneroid manometer',
+        'Comfortable NYLON cuff for easy application',
+        'Durable LATEX bladder and bulb for reliable operation'
       ],
-      details: 'Our Collagen Booster contains hydrolyzed collagen peptides for maximum absorption. Supports skin hydration, joint mobility, and overall structural health. Enhanced with Vitamin C for collagen synthesis.',
-      directions: 'Mix 1 sachet with water or juice daily. Best taken on an empty stomach in the morning.',
+      details: 'Bookang BK2002 aneroid sphygmomanometer is a professional-grade blood pressure monitoring device designed for accurate measurements. Features include: Aneroid manometer for precise readings, NYLON cuff for comfortable application, LATEX bladder (22*12cm) for durability, and LATEX bulb for easy inflation. The device measures blood pressure in the range of 0-300mmHg with an accuracy of +/-3mmHg and sub-division of 2mmHg. Available in multiple colors: blue, red, black, and grey. The cuff size is 50*14cm, making it suitable for standard arm measurements. Comes with a Leathroid bag for convenient storage and portability. Packaged individually in color box.',
+      directions: 'Follow standard blood pressure measurement procedures. Wrap the cuff around the upper arm, inflate using the bulb, and read the measurement from the aneroid manometer. Ensure proper positioning and follow medical guidelines for accurate readings.',
       ingredients: [
-        { name: 'Hydrolyzed Collagen', amount: '5000 mg' },
-        { name: 'Vitamin C', amount: '120 mg' },
-        { name: 'Hyaluronic Acid', amount: '50 mg' }
+        { name: 'Aneroid manometer', amount: '1 Unit' },
+        { name: 'NYLON cuff (50*14cm)', amount: '1 Unit' },
+        { name: 'LATEX bladder (22*12cm)', amount: '1 Unit' },
+        { name: 'LATEX bulb', amount: '1 Unit' },
+        { name: 'Leathroid bag', amount: '1 Unit' }
       ]
     },
     'prod-6': {
       id: 'prod-6',
-      name: 'Immunity Support',
-      rating: 4.7,
-      reviews: 145,
-      questions: 7,
-      originalPrice: 2800,
-      discountedPrice: 2300,
+      name: 'Electric Heating Pad',
+      rating: 4.8,
+      reviews: 312,
+      questions: 15,
+      originalPrice: 3500,
+      discountedPrice: 3200,
       images: [
-        '/assets/products/product-6.webp'
+        '/assets/products/other-product/electric-heating-pad.webp'
       ],
-      packSize: '60 Capsules',
-      wellnessCoins: 2300,
-      inStock: false,
+      packSize: '1 Unit',
+      wellnessCoins: 3200,
+      inStock: true,
       helps: [
-        'Strengthen immune system response',
-        'Provide powerful antioxidant protection',
-        'Support respiratory health and vitality'
+        'Extra soft surface, breathable and kind to skin',
+        'Overheating protection system for safe use',
+        '6 temperature settings for personalized comfort'
       ],
-      details: 'A powerful blend of immune-supporting nutrients including Vitamin C, D, Zinc, and Elderberry. Designed to enhance your body\'s natural defense mechanisms and promote year-round wellness.',
-      directions: 'Take 2 capsules daily with meals or as recommended by healthcare professional.',
+      details: 'Electric Heating Pad is a premium heat therapy device designed for comfort and safety. Features include: Extra soft surface that is breathable and kind to skin, LED button switch for easy operation, detachable control unit for convenience, overheating protection system for safety, 6 temperature settings for personalized comfort, automatic switch-off after approximately 90 minutes, illuminated function display for easy monitoring, and machine-washable at 30°C. Dimensions: 47 x 34 cm. Power: 100 Watt. Perfect for heat therapy and physiotherapy applications.',
+      directions: 'Place the heating pad on the desired area, select your preferred temperature setting using the control unit, and allow it to heat up. The pad will automatically switch off after approximately 90 minutes for safety. Follow the user manual for proper care and maintenance. Machine washable at 30°C.',
       ingredients: [
-        { name: 'Vitamin C', amount: '1000 mg' },
-        { name: 'Vitamin D3', amount: '2000 IU' },
-        { name: 'Zinc', amount: '25 mg' },
-        { name: 'Elderberry Extract', amount: '150 mg' }
+        { name: 'Electric Heating Pad', amount: '1 Unit' },
+        { name: 'Detachable control unit', amount: '1 Unit' },
+        { name: 'Power cord', amount: '1 Unit' },
+        { name: 'User manual', amount: '1 Unit' }
       ]
     },
     'prod-7': {
       id: 'prod-7',
-      name: 'Energy Booster Plus',
-      rating: 4.6,
-      reviews: 98,
-      questions: 5,
-      originalPrice: 2400,
-      discountedPrice: 1950,
+      name: 'Certeza Nb-607 Nebulizer Machine',
+      rating: 4.9,
+      reviews: 428,
+      questions: 18,
+      originalPrice: 5800,
+      discountedPrice: 5300,
       images: [
-        '/assets/products/product-7.webp',
-        '/assets/products/product-8.webp'
+        '/assets/products/other-product/nebulizer-machne-crtza.webp'
       ],
-      packSize: '45 Capsules',
-      wellnessCoins: 1950,
+      packSize: '1 Unit',
+      wellnessCoins: 5300,
       inStock: true,
       helps: [
-        'Boost energy levels naturally without jitters',
-        'Enhance mental clarity and focus',
-        'Support metabolic function and stamina'
+        'Efficiently deliver physician prescribed medication to bronchial lung passages',
+        'Helps in successful treatment of asthma, allergies and respiratory disorders',
+        'Quick effective treatment with optimal respirable dose delivery'
       ],
-      details: 'Energy Booster Plus combines B-vitamins, CoQ10, and natural adaptogens to provide sustained energy throughout the day. Perfect for active lifestyles and mental performance.',
-      directions: 'Take 1 capsule in the morning with breakfast. May take an additional capsule in early afternoon if needed.',
+      details: 'Certeza Nebulizer Compressor System NB-607 is a compact medical device designed to efficiently deliver physician prescribed medication to the bronchial lung passages. It helps in the successful treatment of asthma, allergies and other respiratory disorders. Features: Compressed air nebulization for treatment of upper and lower airways, colds, asthma, and respiratory diseases. Premium carrying bag included for portability. Optimal respirable dose delivery ensures effective medication administration. Quick effective treatment for rapid relief. Support for wide voltage input for versatile use. Durable quality product built to last. Non-slip body material for safe handling. Built-in medicine cup holder for convenience. Angled-mouth piece for comfortable use. Long tube for flexible positioning. Comes with 3 Year Warranty for peace of mind.',
+      directions: 'Follow physician prescribed medication instructions. Fill the medicine cup with the prescribed medication, connect the tube and mouthpiece, turn on the device, and breathe normally through the mouthpiece until the medication is fully administered. Clean all parts after each use as per instructions.',
       ingredients: [
-        { name: 'B-Complex Vitamins', amount: '100 mg' },
-        { name: 'CoQ10', amount: '100 mg' },
-        { name: 'Ginseng Extract', amount: '200 mg' }
+        { name: 'Nebulizer Compressor System', amount: '1 Unit' },
+        { name: 'Medicine cup', amount: '1 Unit' },
+        { name: 'Angled-mouth piece', amount: '1 Unit' },
+        { name: 'Long tube', amount: '1 Unit' },
+        { name: 'Premium carrying bag', amount: '1 Unit' },
+        { name: 'User manual', amount: '1 Unit' }
       ]
     },
-    'prod-8': {
-      id: 'prod-8',
-      name: 'Omega-3 Fish Oil',
-      rating: 4.8,
-      reviews: 234,
-      questions: 9,
-      originalPrice: 3200,
-      discountedPrice: 2650,
-      images: [
-        '/assets/products/product-8.webp',
-        '/assets/products/product-9.webp',
-        '/assets/products/product-10.webp'
-      ],
-      packSize: '120 Softgels',
-      wellnessCoins: 2650,
-      inStock: true,
-      helps: [
-        'Support cardiovascular and heart health',
-        'Promote brain function and cognitive health',
-        'Reduce inflammation and joint stiffness'
-      ],
-      details: 'Premium Omega-3 Fish Oil with high EPA and DHA content. Sourced from deep-sea fish and molecularly distilled for purity. Supports heart, brain, and joint health.',
-      directions: 'Take 2 softgels daily with meals. Can be taken all at once or split between meals.',
-      ingredients: [
-        { name: 'Omega-3 Fatty Acids', amount: '1000 mg' },
-        { name: 'EPA', amount: '600 mg' },
-        { name: 'DHA', amount: '400 mg' }
-      ]
-    },
-    'prod-9': {
-      id: 'prod-9',
-      name: 'Vitamin D3 Complex',
-      rating: 4.5,
-      reviews: 167,
-      questions: 4,
-      originalPrice: 1900,
-      discountedPrice: 1550,
-      images: [
-        '/assets/products/product-9.webp'
-      ],
-      packSize: '90 Capsules',
-      wellnessCoins: 1550,
-      inStock: true,
-      helps: [
-        'Support bone health and calcium absorption',
-        'Boost immune system function',
-        'Improve mood and reduce seasonal blues'
-      ],
-      details: 'High-potency Vitamin D3 (cholecalciferol) supplement for optimal absorption. Essential for bone health, immune function, and mood regulation. Especially important for those with limited sun exposure.',
-      directions: 'Take 1 capsule daily with a fat-containing meal for best absorption.',
-      ingredients: [
-        { name: 'Vitamin D3', amount: '5000 IU' },
-        { name: 'Vitamin K2', amount: '100 mcg' },
-        { name: 'Calcium', amount: '50 mg' }
-      ]
-    },
-    'prod-10': {
-      id: 'prod-10',
-      name: 'Probiotics Formula',
-      rating: 4.7,
-      reviews: 192,
-      questions: 6,
-      originalPrice: 2600,
-      discountedPrice: 2100,
-      images: [
-        '/assets/products/product-10.webp',
-        '/assets/products/product-1.webp'
-      ],
-      packSize: '30 Capsules',
-      wellnessCoins: 2100,
-      inStock: false,
-      helps: [
-        'Support digestive health and gut balance',
-        'Enhance nutrient absorption and digestion',
-        'Boost immune system from the gut'
-      ],
-      details: 'Advanced multi-strain probiotic formula with 50 billion CFU. Contains 10 beneficial bacterial strains to support digestive health, immune function, and overall gut wellness. Shelf-stable and delayed-release capsules.',
-      directions: 'Take 1 capsule daily on an empty stomach, 30 minutes before meals or as directed by healthcare professional.',
-      ingredients: [
-        { name: 'Probiotic Blend (10 strains)', amount: '50 Billion CFU' },
-        { name: 'Prebiotic Fiber', amount: '100 mg' },
-        { name: 'Digestive Enzymes', amount: '50 mg' }
-      ]
-    }
   };
 
   // Get current product based on URL parameter
@@ -338,93 +261,66 @@ const ProductDetailPage = ({ addToCart }) => {
   const allProducts = [
     {
       id: 'prod-1',
-      name: 'Premium Health Supplement',
+      name: 'Magnesium Glycinate | Magnizen',
       rating: 4.5,
       reviews: 120,
       originalPrice: 4500,
       discountedPrice: 3500,
-      image: '/assets/products/product-1.webp'
+      image: '/assets/products/main-product.jpeg'
     },
     {
       id: 'prod-2',
-      name: 'Biotin Plus Capsules',
+      name: 'Vanur Men',
       rating: 4.8,
       reviews: 89,
       originalPrice: 2000,
       discountedPrice: 1650,
-      image: '/assets/products/product-2.webp'
+      image: '/assets/products/product-1.jpeg'
     },
     {
       id: 'prod-3',
-      name: 'Magnesium Complex',
+      name: 'Vanur Women',
       rating: 4.6,
       reviews: 156,
       originalPrice: 1800,
       discountedPrice: 1500,
-      image: '/assets/products/product-3.webp'
+      image: '/assets/products/product-2.jpeg'
     },
     {
       id: 'prod-4',
-      name: 'Women Multivitamin',
+      name: 'Certeza BM-405 Digital Blood Pressure Monitor',
       rating: 4.7,
-      reviews: 203,
-      originalPrice: 2200,
-      discountedPrice: 1850,
-      image: '/assets/products/product-4.webp'
+      reviews: 245,
+      originalPrice: 6500,
+      discountedPrice: 5950,
+      image: '/assets/products/other-product/Certeza-1.webp'
     },
     {
       id: 'prod-5',
-      name: 'Collagen Booster',
-      rating: 4.9,
-      reviews: 178,
-      originalPrice: 3500,
-      discountedPrice: 2900,
-      image: '/assets/products/product-5.webp'
+      name: 'Bookang – B.P Apparatus Aneroid',
+      rating: 4.6,
+      reviews: 189,
+      originalPrice: 2800,
+      discountedPrice: 2500,
+      image: '/assets/products/other-product/Bookang.jpg'
     },
     {
       id: 'prod-6',
-      name: 'Immunity Support',
-      rating: 4.7,
-      reviews: 145,
-      originalPrice: 2800,
-      discountedPrice: 2300,
-      image: '/assets/products/product-6.webp'
+      name: 'Electric Heating Pad',
+      rating: 4.8,
+      reviews: 312,
+      originalPrice: 3500,
+      discountedPrice: 3200,
+      image: '/assets/products/other-product/electric-heating-pad.webp'
     },
     {
       id: 'prod-7',
-      name: 'Energy Booster Plus',
-      rating: 4.6,
-      reviews: 98,
-      originalPrice: 2400,
-      discountedPrice: 1950,
-      image: '/assets/products/product-7.webp'
-    },
-    {
-      id: 'prod-8',
-      name: 'Omega-3 Fish Oil',
-      rating: 4.8,
-      reviews: 234,
-      originalPrice: 3200,
-      discountedPrice: 2650,
-      image: '/assets/products/product-8.webp'
-    },
-    {
-      id: 'prod-9',
-      name: 'Vitamin D3 Complex',
-      rating: 4.5,
-      reviews: 167,
-      originalPrice: 1900,
-      discountedPrice: 1550,
-      image: '/assets/products/product-9.webp'
-    },
-    {
-      id: 'prod-10',
-      name: 'Probiotics Formula',
-      rating: 4.7,
-      reviews: 192,
-      originalPrice: 2600,
-      discountedPrice: 2100,
-      image: '/assets/products/product-10.webp'
+      name: 'Certeza Nb-607 Nebulizer Machine',
+      rating: 4.9,
+      reviews: 428,
+      originalPrice: 5800,
+      discountedPrice: 5300,
+      image: '/assets/products/other-product/nebulizer-machne-crtza.webp'
     }
   ];
 
@@ -440,34 +336,88 @@ const ProductDetailPage = ({ addToCart }) => {
         <div className="grid md:grid-cols-2 gap-8 bg-white rounded-lg shadow p-6 mb-6">
           {/* Left Side - Images */}
           <div>
-            {/* Main Image - Sticky */}
+            {/* Main Image/Video - Sticky */}
             <div className="sticky top-4">
               <div className="bg-gray-50 rounded-lg p-8 mb-3 flex items-center justify-center h-[500px]">
-                <img 
-                  src={product.images[selectedImage]} 
-                  alt={product.name}
-                  className="max-h-full max-w-full object-contain"
-                />
+                {product.id === 'prod-1' && isVideoMode ? (
+                  <video 
+                    src={product.video}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="max-h-full max-w-full object-contain"
+                    style={{ pointerEvents: 'none' }}
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <img 
+                    src={product.images[selectedImage]} 
+                    alt={product.name}
+                    className="max-h-full max-w-full object-contain"
+                  />
+                )}
               </div>
               
-              {/* Thumbnail Images - Only show if more than 1 image */}
-              {product.images.length > 1 && (
+              {/* Thumbnail Images - Show for prod-1 always, or if more than 1 image */}
+              {(product.id === 'prod-1' || product.images.length > 1) && (
                 <div className="flex gap-3">
-                  {product.images.map((img, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setSelectedImage(idx)}
-                      className={`flex-1 bg-gray-50 rounded-lg p-2 border-2 transition-colors ${
-                        selectedImage === idx ? 'border-biomed-teal' : 'border-transparent'
-                      }`}
-                    >
-                      <img 
-                        src={img} 
-                        alt={`${product.name} ${idx + 1}`}
-                        className="w-full h-16 object-contain"
-                      />
-                    </button>
-                  ))}
+                  {product.id === 'prod-1' ? (
+                    <>
+                      {/* Video thumbnail */}
+                      <button
+                        onClick={() => {
+                          setIsVideoMode(true);
+                          setSelectedImage(0);
+                        }}
+                        className={`flex-1 bg-gray-50 rounded-lg p-2 border-2 transition-colors ${
+                          isVideoMode ? 'border-biomed-teal' : 'border-transparent'
+                        }`}
+                      >
+                        <div className="w-full h-16 flex items-center justify-center bg-gray-100 rounded">
+                          <svg className="w-8 h-8 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                          </svg>
+                        </div>
+                      </button>
+                      {/* Image thumbnails */}
+                      {product.images.map((img, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => {
+                            setIsVideoMode(false);
+                            setSelectedImage(idx);
+                          }}
+                          className={`flex-1 bg-gray-50 rounded-lg p-2 border-2 transition-colors ${
+                            !isVideoMode && selectedImage === idx ? 'border-biomed-teal' : 'border-transparent'
+                          }`}
+                        >
+                          <img 
+                            src={img} 
+                            alt={`${product.name} ${idx + 1}`}
+                            className="w-full h-16 object-contain"
+                          />
+                        </button>
+                      ))}
+                    </>
+                  ) : (
+                    product.images.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setSelectedImage(idx)}
+                        className={`flex-1 bg-gray-50 rounded-lg p-2 border-2 transition-colors ${
+                          selectedImage === idx ? 'border-biomed-teal' : 'border-transparent'
+                        }`}
+                      >
+                        <img 
+                          src={img} 
+                          alt={`${product.name} ${idx + 1}`}
+                          className="w-full h-16 object-contain"
+                        />
+                      </button>
+                    ))
+                  )}
                 </div>
               )}
             </div>
@@ -574,7 +524,7 @@ const ProductDetailPage = ({ addToCart }) => {
             {/* Action Buttons */}
             <div className="flex gap-3 mb-4">
               <button 
-                onClick={() => addToCart({...product, quantity})}
+                onClick={() => addToCart({...product, quantity, image: product.images && product.images[0] ? product.images[0] : '/assets/products/main-product.jpeg'})}
                 disabled={!product.inStock}
                 className={`flex-1 py-2.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 ${
                   product.inStock
