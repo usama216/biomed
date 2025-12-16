@@ -8,6 +8,8 @@ const Hero = () => {
     '/assets/hero-section-banner/banner-image-1.jpg',
     '/assets/hero-section-banner/banner-image-2.jpg',
     '/assets/hero-section-banner/banner-image-3.jpg',
+    '/assets/hero-section-banner/banner-image-4.jpg',
+    '/assets/hero-section-banner/banner-image-5.jpg',
   ];
 
   // Auto-play carousel
@@ -51,13 +53,13 @@ const Hero = () => {
         onClick={prevSlide}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/60 backdrop-blur-sm text-white p-3 rounded-full transition-all shadow-lg"
       >
-        <ChevronLeft size={28} />
+        <ChevronLeft size={18} />
       </button>
       <button
         onClick={nextSlide}
         className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/60 backdrop-blur-sm text-white p-3 rounded-full transition-all shadow-lg"
       >
-        <ChevronRight size={28} />
+        <ChevronRight size={18} />
       </button>
 
       {/* Dots Indicator */}
