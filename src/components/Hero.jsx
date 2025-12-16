@@ -27,7 +27,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-[500px] md:h-[110vh] overflow-hidden">
+    <section className="relative h-[250px] md:h-[110vh] overflow-hidden">
       {/* Carousel Images */}
       <div className="absolute inset-0">
         {slides.map((image, index) => (

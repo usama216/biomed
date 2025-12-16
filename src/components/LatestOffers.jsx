@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const LatestOffers = ({ addToCart }) => {
   const scrollContainerRef = useRef(null);
@@ -7,7 +8,7 @@ const LatestOffers = ({ addToCart }) => {
   
   const offers = [
     {
-      id: 'offer-1',
+      id: 'prod-1',
       name: 'Magnesium Glycinate | Magnizen',
       price: 3500,
       image: '/assets/products/main-product.jpeg',
@@ -17,7 +18,7 @@ const LatestOffers = ({ addToCart }) => {
       discountedPrice: 3500
     },
     {
-      id: 'offer-2',
+      id: 'prod-2',
       name: 'Vanur Men',
       price: 1650,
       image: '/assets/products/product-1.jpeg',
@@ -27,7 +28,7 @@ const LatestOffers = ({ addToCart }) => {
       discountedPrice: 1650
     },
     {
-      id: 'offer-3',
+      id: 'prod-3',
       name: 'Vanur Women',
       price: 1500,
       image: '/assets/products/product-2.jpeg',
@@ -37,7 +38,7 @@ const LatestOffers = ({ addToCart }) => {
       discountedPrice: 1500
     },
     {
-      id: 'offer-4',
+      id: 'prod-4',
       name: 'Certeza BM-405 Digital Blood Pressure Monitor',
       price: 5950,
       image: '/assets/products/other-product/Certeza-1.webp',
@@ -47,7 +48,7 @@ const LatestOffers = ({ addToCart }) => {
       discountedPrice: 5950
     },
     {
-      id: 'offer-5',
+      id: 'prod-5',
       name: 'Bookang – B.P Apparatus Aneroid',
       price: 2500,
       image: '/assets/products/other-product/Bookang.jpg',
@@ -57,7 +58,7 @@ const LatestOffers = ({ addToCart }) => {
       discountedPrice: 2500
     },
     {
-      id: 'offer-6',
+      id: 'prod-6',
       name: 'Electric Heating Pad',
       price: 3200,
       image: '/assets/products/other-product/electric-heating-pad.webp',
@@ -67,7 +68,7 @@ const LatestOffers = ({ addToCart }) => {
       discountedPrice: 3200
     },
     {
-      id: 'offer-7',
+      id: 'prod-7',
       name: 'Certeza Nb-607 Nebulizer Machine',
       price: 5300,
       image: '/assets/products/other-product/nebulizer-machne-crtza.webp',
@@ -146,7 +147,11 @@ const LatestOffers = ({ addToCart }) => {
             onMouseLeave={() => setIsAutoScrolling(true)}
           >
             {duplicatedOffers.map((offer, idx) => (
-              <div key={`offer-${idx}`} className="w-[320px] min-w-[320px] max-w-[320px] bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-shadow flex-shrink-0">
+              <Link 
+                key={`offer-${idx}`} 
+                to={`/product/${offer.id}`}
+                className="w-[320px] min-w-[320px] max-w-[320px] bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-shadow flex-shrink-0 block cursor-pointer"
+              >
                 <div className="h-64 flex items-center justify-center bg-gray-50 relative overflow-hidden">
                   <img 
                     src={offer.image} 
@@ -161,13 +166,16 @@ const LatestOffers = ({ addToCart }) => {
                   <h3 className="font-semibold text-gray-900 mb-2 h-12 line-clamp-2">{offer.name}</h3>
                   <p className="text-2xl font-bold text-biomed-teal mb-4">Rs. {offer.discountedPrice}</p>
                   <button 
-                    onClick={() => addToCart(offer)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      addToCart(offer);
+                    }}
                     className="w-full bg-biomed-navy hover:bg-biomed-navy/90 text-white py-2 rounded-lg font-semibold transition-colors"
                   >
                     Add to Cart
                   </button>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           <button 

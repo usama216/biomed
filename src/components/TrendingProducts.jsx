@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight, ShoppingCart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const TrendingProducts = ({ addToCart }) => {
   const [activeTab, setActiveTab] = useState('bestselling');
@@ -166,7 +167,11 @@ const TrendingProducts = ({ addToCart }) => {
             onMouseLeave={() => setIsAutoScrolling(true)}
           >
             {duplicatedProducts.map((product, idx) => (
-              <div key={`product-${idx}`} className="w-[280px] min-w-[280px] max-w-[280px] bg-white border rounded-lg p-4 hover:shadow-lg transition-shadow flex-shrink-0">
+              <Link 
+                key={`product-${idx}`} 
+                to={`/product/${product.id}`}
+                className="w-[280px] min-w-[280px] max-w-[280px] bg-white border rounded-lg p-4 hover:shadow-lg transition-shadow flex-shrink-0 block cursor-pointer"
+              >
                 <div className="h-48 rounded-lg mb-4 flex items-center justify-center bg-gray-50 overflow-hidden">
                   <img 
                     src={product.image} 
@@ -192,13 +197,16 @@ const TrendingProducts = ({ addToCart }) => {
                   <span className="text-xl font-bold text-biomed-teal">Rs. {product.discountedPrice}</span>
                 </div>
                 <button
-                  onClick={() => handleAddToCart(product)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleAddToCart(product);
+                  }}
                   className="w-full bg-biomed-navy hover:bg-biomed-navy/90 text-white py-2 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
                 >
                   <ShoppingCart size={18} />
                   Add to Cart
                 </button>
-              </div>
+              </Link>
             ))}
           </div>
           <button 

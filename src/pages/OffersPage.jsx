@@ -28,7 +28,7 @@ const OffersPage = ({ addToCart }) => {
   // Combo/Offer Products - Based on 3 Major Products
   const offerProducts = [
     {
-      id: 'offer-1',
+      id: 'prod-1',
       name: 'Magnesium Glycinate | Magnizen',
       rating: 4.5,
       reviews: 120,
@@ -41,7 +41,7 @@ const OffersPage = ({ addToCart }) => {
       salePercentage: 22
     },
     {
-      id: 'offer-2',
+      id: 'prod-2',
       name: 'Vanur Men',
       rating: 4.8,
       reviews: 89,
@@ -54,7 +54,7 @@ const OffersPage = ({ addToCart }) => {
       salePercentage: 18
     },
     {
-      id: 'offer-3',
+      id: 'prod-3',
       name: 'Vanur Women',
       rating: 4.6,
       reviews: 156,
@@ -67,7 +67,7 @@ const OffersPage = ({ addToCart }) => {
       salePercentage: 17
     },
     {
-      id: 'offer-4',
+      id: 'prod-4',
       name: 'Certeza BM-405 Digital Blood Pressure Monitor',
       rating: 4.7,
       reviews: 245,
@@ -80,7 +80,7 @@ const OffersPage = ({ addToCart }) => {
       salePercentage: 8
     },
     {
-      id: 'offer-5',
+      id: 'prod-5',
       name: 'Bookang – B.P Apparatus Aneroid',
       rating: 4.6,
       reviews: 189,
@@ -93,7 +93,7 @@ const OffersPage = ({ addToCart }) => {
       salePercentage: 11
     },
     {
-      id: 'offer-6',
+      id: 'prod-6',
       name: 'Electric Heating Pad',
       rating: 4.8,
       reviews: 312,
@@ -106,7 +106,7 @@ const OffersPage = ({ addToCart }) => {
       salePercentage: 9
     },
     {
-      id: 'offer-7',
+      id: 'prod-7',
       name: 'Certeza Nb-607 Nebulizer Machine',
       rating: 4.9,
       reviews: 428,
@@ -297,19 +297,18 @@ const OffersPage = ({ addToCart }) => {
               {/* Products Grid */}
               <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-6'}>
                 {offerProducts.map((product) => (
-                  <div 
+                  <Link 
                     key={product.id} 
-                    className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all overflow-hidden group"
+                    to={`/product/${product.id}`}
+                    className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all overflow-hidden group block cursor-pointer"
                   >
                     {/* Image Container */}
                     <div className="relative">
-                      <Link to={`/product/${product.id}`}>
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-64 object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </Link>
+                      <img 
+                        src={product.image} 
+                        alt={product.name}
+                        className="w-full h-64 object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                      />
                       {/* Badges */}
                       <div className="absolute top-2 left-2 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
                         Sale
@@ -323,11 +322,9 @@ const OffersPage = ({ addToCart }) => {
 
                     {/* Product Info */}
                     <div className="p-4">
-                      <Link to={`/product/${product.id}`}>
-                        <h3 className="font-bold text-gray-900 mb-2 hover:text-biomed-teal transition-colors line-clamp-2">
-                          {product.name}
-                        </h3>
-                      </Link>
+                      <h3 className="font-bold text-gray-900 mb-2 hover:text-biomed-teal transition-colors line-clamp-2">
+                        {product.name}
+                      </h3>
 
                       {/* Rating */}
                       <div className="flex items-center gap-2 mb-2">
@@ -350,21 +347,21 @@ const OffersPage = ({ addToCart }) => {
 
                       {/* Actions */}
                       <div className="flex items-center gap-2">
-                        <Link
-                          to={`/product/${product.id}`}
-                          className="flex-1 bg-biomed-navy hover:bg-biomed-navy/90 text-white py-2 rounded font-semibold text-sm text-center transition-colors"
-                        >
+                        <div className="flex-1 bg-biomed-navy hover:bg-biomed-navy/90 text-white py-2 rounded font-semibold text-sm text-center transition-colors">
                           VIEW PRODUCT
-                        </Link>
+                        </div>
                         <button
-                          onClick={() => addToCart && addToCart(product)}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            addToCart && addToCart(product);
+                          }}
                           className="w-10 h-10 bg-biomed-teal hover:bg-biomed-teal/90 text-white rounded flex items-center justify-center transition-colors"
                         >
                           <ShoppingCart size={18} />
                         </button>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

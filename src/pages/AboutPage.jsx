@@ -76,7 +76,7 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative h-[110vh] overflow-hidden">
+      <section className="relative h-[250px] md:h-[110vh] overflow-hidden">
         <img 
           src="/assets/hero-section-banner/banner-image-1.jpg" 
           alt="Manufacturing Facility"
@@ -85,7 +85,7 @@ const AboutPage = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="relative -mt-20 z-10">
+      <section className="relative md:-mt-20 z-10">
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">

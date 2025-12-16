@@ -238,7 +238,11 @@ const ProductsPage = ({ addToCart }) => {
             {/* Products Grid */}
             <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'grid-cols-1 gap-4'}`}>
               {products.map((product) => (
-                <div key={product.id} className="bg-white rounded-lg shadow hover:shadow-xl transition-shadow overflow-hidden">
+                <Link 
+                  key={product.id} 
+                  to={`/product/${product.id}`}
+                  className="bg-white rounded-lg shadow hover:shadow-xl transition-shadow overflow-hidden block cursor-pointer"
+                >
                   <div className="relative">
                     <div className="h-64 bg-gray-50 flex items-center justify-center p-4">
                       <img 
@@ -278,14 +282,14 @@ const ProductsPage = ({ addToCart }) => {
                     </div>
 
                     <div className="flex gap-2">
-                      <Link 
-                        to={`/product/${product.id}`}
-                        className="flex-1 bg-gray-800 hover:bg-gray-900 text-white py-2 rounded text-sm font-semibold text-center"
-                      >
+                      <div className="flex-1 bg-gray-800 hover:bg-gray-900 text-white py-2 rounded text-sm font-semibold text-center">
                         VIEW PRODUCT
-                      </Link>
+                      </div>
                       <button
-                        onClick={() => addToCart(product)}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          addToCart(product);
+                        }}
                         disabled={!product.inStock}
                         className={`p-2 rounded ${
                           product.inStock 
@@ -297,7 +301,7 @@ const ProductsPage = ({ addToCart }) => {
                       </button>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
