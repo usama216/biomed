@@ -70,6 +70,42 @@ const TrendingProducts = ({ addToCart }) => {
       originalPrice: 5800,
       discountedPrice: 5300,
       image: '/assets/products/other-product/nebulizer-machne-crtza.webp'
+    },
+    {
+      id: 'prod-8',
+      name: 'Nurose Collagen Capsules',
+      rating: 4.7,
+      reviews: 95,
+      originalPrice: 1990,
+      discountedPrice: 1790,
+      image: '/assets/products/product-3.jpeg'
+    },
+    {
+      id: 'prod-9',
+      name: "BioMed's Teenur",
+      rating: 4.6,
+      reviews: 112,
+      originalPrice: 1590,
+      discountedPrice: 1440,
+      image: '/assets/products/product-4.jpeg'
+    },
+    {
+      id: 'prod-10',
+      name: 'Magioo Magnesium Glycinate',
+      rating: 4.8,
+      reviews: 178,
+      originalPrice: 2250,
+      discountedPrice: 2030,
+      image: '/assets/products/product-5.jpeg'
+    },
+    {
+      id: 'prod-11',
+      name: 'VNUR WOMEN Once a Day Multi',
+      rating: 4.7,
+      reviews: 145,
+      originalPrice: 2500,
+      discountedPrice: 2250,
+      image: '/assets/products/product-6.jpeg'
     }
   ];
 

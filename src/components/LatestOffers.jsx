@@ -76,6 +76,46 @@ const LatestOffers = ({ addToCart }) => {
       reviews: 428,
       originalPrice: 5800,
       discountedPrice: 5300
+    },
+    {
+      id: 'prod-8',
+      name: 'Nurose Collagen Capsules',
+      price: 1790,
+      image: '/assets/products/product-3.jpeg',
+      rating: 4.7,
+      reviews: 95,
+      originalPrice: 1990,
+      discountedPrice: 1790
+    },
+    {
+      id: 'prod-9',
+      name: "BioMed's Teenur",
+      price: 1440,
+      image: '/assets/products/product-4.jpeg',
+      rating: 4.6,
+      reviews: 112,
+      originalPrice: 1590,
+      discountedPrice: 1440
+    },
+    {
+      id: 'prod-10',
+      name: 'Magioo Magnesium Glycinate',
+      price: 2030,
+      image: '/assets/products/product-5.jpeg',
+      rating: 4.8,
+      reviews: 178,
+      originalPrice: 2250,
+      discountedPrice: 2030
+    },
+    {
+      id: 'prod-11',
+      name: 'VNUR WOMEN Once a Day Multi',
+      price: 2250,
+      image: '/assets/products/product-6.jpeg',
+      rating: 4.7,
+      reviews: 145,
+      originalPrice: 2500,
+      discountedPrice: 2250
     }
   ];
 

@@ -98,6 +98,50 @@ const ProductsPage = ({ addToCart }) => {
       image: '/assets/products/other-product/nebulizer-machne-crtza.webp',
       description: 'Compact medical device for efficient medication delivery to bronchial lung passages. Helps treat asthma, allergies and respiratory disorders. 3 Year Warranty included.',
       inStock: true
+    },
+    {
+      id: 'prod-8',
+      name: 'Nurose Collagen Capsules',
+      rating: 4.7,
+      reviews: 95,
+      originalPrice: 1990,
+      discountedPrice: 1790,
+      image: '/assets/products/product-3.jpeg',
+      description: 'Dietary supplement with Vitamin C (20 mg), Biotin (2500 mcg), and Collagen (1000 mg) to boost beauty and wellness from the inside out. Promotes healthier hair, youthful skin, and stronger nails.',
+      inStock: true
+    },
+    {
+      id: 'prod-9',
+      name: "BioMed's Teenur",
+      rating: 4.6,
+      reviews: 112,
+      originalPrice: 1590,
+      discountedPrice: 1440,
+      image: '/assets/products/product-4.jpeg',
+      description: 'Biotin + Keratin dietary supplement tablet containing Biotin 2500mcg and Hydrolyzed Keratin 250mg. Designed for adult men to support hair growth, nail health, skin health, and overall wellness.',
+      inStock: true
+    },
+    {
+      id: 'prod-10',
+      name: 'Magioo Magnesium Glycinate',
+      rating: 4.8,
+      reviews: 178,
+      originalPrice: 2250,
+      discountedPrice: 2030,
+      image: '/assets/products/product-5.jpeg',
+      description: 'Dietary supplement tablet containing 1000 mg of Magnesium Glycinate (USP) per serving. Supports sleep, helps nerve and muscle function, promotes bone & heart health, and enhances nutrient absorption.',
+      inStock: true
+    },
+    {
+      id: 'prod-11',
+      name: 'VNUR WOMEN Once a Day Multi',
+      rating: 4.7,
+      reviews: 145,
+      originalPrice: 2500,
+      discountedPrice: 2250,
+      image: '/assets/products/product-6.jpeg',
+      description: 'Once-daily multivitamin tablet specially formulated for adult women, enriched with Inositol, Alpha Lipoic Acid & Biotin 2500 mcg. Provides nutritional support, energy metabolism boost, healthy hair, skin & nails, and immunity enhancement.',
+      inStock: true
     }
   ];
 
@@ -151,7 +195,7 @@ const ProductsPage = ({ addToCart }) => {
                 <h3 className="font-bold text-lg mb-4">AVAILABILITY</h3>
                 <label className="flex items-center gap-2 mb-2">
                   <input type="checkbox" className="w-4 h-4" defaultChecked />
-                  <span className="text-sm">In Stock (7)</span>
+                  <span className="text-sm">In Stock (11)</span>
                 </label>
                 <label className="flex items-center gap-2">
                   <input type="checkbox" className="w-4 h-4" />

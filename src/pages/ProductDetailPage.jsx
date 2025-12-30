@@ -252,6 +252,127 @@ const ProductDetailPage = ({ addToCart }) => {
         { name: 'User manual', amount: '1 Unit' }
       ]
     },
+    'prod-8': {
+      id: 'prod-8',
+      name: 'Nurose Collagen Capsules',
+      rating: 4.7,
+      reviews: 95,
+      questions: 4,
+      originalPrice: 1990,
+      discountedPrice: 1790,
+      images: [
+        '/assets/products/product-3.jpeg'
+      ],
+      packSize: '30 Capsules',
+      wellnessCoins: 1790,
+      inStock: true,
+      helps: [
+        'Thicker, healthier hair – thanks to biotin and collagen nourishment',
+        'Youthful skin – collagen and vitamin C improve texture and reduce signs of aging',
+        'Stronger nails – biotin fortifies nail structure for less splitting'
+      ],
+      details: 'Nurose Collagen capsules are a dietary supplement packed with Vitamin C (20 mg), Biotin (2500 mcg), and Collagen (1000 mg) in each dose. The blend works to boost beauty and wellness from the inside out. Collagen (1000 mg) supports skin elasticity and joint health, helping you achieve youthful, radiant skin and stronger connective tissues. Biotin (2500 mcg) promotes healthy hair and nails, making them thicker and less prone to breakage. Vitamin C (20 mg) enhances collagen synthesis and acts as an antioxidant, protecting skin cells and boosting overall immunity. Together, these ingredients deliver three key benefits: thicker, healthier hair, youthful skin, and stronger nails. Each pack contains 30 capsules, to be taken daily with a meal for best results. Manufactured by Nurture Pharma, Lahore, and marketed by Biomed Innovation Pharmaceuticals under the DRAP Act 2012.',
+      directions: 'Take 1 capsule daily with a meal or as directed by a physician. Do not exceed the recommended daily dose.',
+      ingredients: [
+        { name: 'Collagen', amount: '1000 mg' },
+        { name: 'Biotin', amount: '2500 mcg' },
+        { name: 'Vitamin C', amount: '20 mg' }
+      ]
+    },
+    'prod-9': {
+      id: 'prod-9',
+      name: "BioMed's Teenur",
+      rating: 4.6,
+      reviews: 112,
+      questions: 6,
+      originalPrice: 1590,
+      discountedPrice: 1440,
+      images: [
+        '/assets/products/product-4.jpeg'
+      ],
+      packSize: '30 Tablets',
+      wellnessCoins: 1440,
+      inStock: true,
+      helps: [
+        'Hair Growth: strengthens follicles, promotes growth & reduces loss',
+        'Nail Health: strengthens nails & reduces breakage',
+        'Skin Health: improves hydration, elasticity & texture',
+        'Overall Wellness: supports general health, energy & immune function'
+      ],
+      details: "BioMed's Teenur Biotin + Keratin is a dietary supplement tablet containing Biotin 2500mcg and Hydrolyzed Keratin 250mg. It is designed for adult men and supports hair growth by strengthening follicles, promoting growth and reducing loss. For nail health, it strengthens nails and reduces breakage. It improves skin health by enhancing hydration, elasticity and texture. Keratin benefits include rebuilding hair, strengthening hair and nails, and enhancing skin elasticity. Overall, it supports general health, energy and immune function. Each pack contains 30 tablets, to be taken one tablet daily with a meal or as directed by a physician. Do not exceed the recommended dose. For adult men only. Consult a physician if you are on other medications or have allergies. Discontinue use if any adverse reaction occurs. Keep out of reach of children. Store in a cool, dry place, protected from sunlight, heat and moisture. Manufactured by Nurture Pharma, Lahore, Pakistan. Approved according to DRAP Act 2012.",
+      directions: 'Take one tablet daily with a meal or as directed by a physician. Do not exceed the recommended dose. For adult men only. Consult a physician if you are on other medications or have allergies.',
+      ingredients: [
+        { name: 'Biotin', amount: '2500 mcg' },
+        { name: 'Hydrolyzed Keratin', amount: '250 mg' }
+      ]
+    },
+    'prod-10': {
+      id: 'prod-10',
+      name: 'Magioo Magnesium Glycinate',
+      rating: 4.8,
+      reviews: 178,
+      questions: 8,
+      originalPrice: 2250,
+      discountedPrice: 2030,
+      images: [
+        '/assets/products/product-5.jpeg'
+      ],
+      packSize: '30 Tablets',
+      wellnessCoins: 2030,
+      inStock: true,
+      helps: [
+        'Supports sleep quality and restful sleep',
+        'Helps nerve and muscle function',
+        'Promotes bone and heart health',
+        'Enhances nutrient absorption'
+      ],
+      details: 'Magioo Magnesium Glycinate is a dietary supplement tablet containing 1000 mg of Magnesium Glycinate (USP) per serving. Manufactured by Nurture Pharma, Lahore, Pakistan, and marketed by Biomed Innovation Pharmaceuticals, the product comes in a pack of 30 tablets. Key features and benefits include supporting sleep, helping nerve and muscle function, promoting bone and heart health, and enhancing nutrient absorption. This product is used for the prevention of disease, not for direct treatment. GMP certified and compliant with DRAP Act 2012. For adults only. Consult a healthcare professional if you are pregnant, breastfeeding, or taking other medicines. Discontinue use if allergic or adverse reactions occur. Protect from light, heat and moisture. Store below 30°C in a dry place. Keep out of reach of children and keep the container tightly closed after use.',
+      directions: 'Adults take 1 tablet 1–2 times daily with meals, or as directed by a physician. Do not exceed the recommended dose. For adults only. Consult a healthcare professional if you are pregnant, breastfeeding, or taking other medicines. Discontinue use if allergic or adverse reactions occur.',
+      ingredients: [
+        { name: 'Magnesium Glycinate (USP)', amount: '1000 mg' }
+      ]
+    },
+    'prod-11': {
+      id: 'prod-11',
+      name: 'VNUR WOMEN Once a Day Multi',
+      rating: 4.7,
+      reviews: 145,
+      questions: 7,
+      originalPrice: 2500,
+      discountedPrice: 2250,
+      images: [
+        '/assets/products/product-6.jpeg'
+      ],
+      packSize: '30 Tablets',
+      wellnessCoins: 2250,
+      inStock: true,
+      helps: [
+        'Nutritional support for overall health',
+        'Energy metabolism boost',
+        'Healthy hair, skin & nails',
+        'Immunity enhancement'
+      ],
+      details: 'Biomed Innovation Pharmaceuticals – VNUR WOMEN Once a Day Multi is a once-daily multivitamin tablet specially formulated for adult women, enriched with Inositol, Alpha Lipoic Acid & Biotin 2500 mcg. Key benefits include nutritional support for overall health, energy metabolism boost, healthy hair, skin & nails, and immunity enhancement. Each tablet contains a comprehensive blend of essential vitamins and minerals including Retinol acetate (Vit A) 2500 IU, Ascorbic acid (Vit C) 100 mg, Cholecalciferol (Vit D3) 800 IU, Alpha tocopherol acetate (Vit E) 30 IU, Thiamine HCL (Vit B1) 1.5 mg, Riboflavin (Vit B2) 2 mg, Niacin (Vit B3) 22 mg, Pyridoxine HCL (Vit B6) 2 mg, Folic acid 600 mcg, Cyanocobalamin (Vit B12) 10 mcg, Biotin 2500 mcg, Calcium Pantothenate 15 mg, Vitamin K2 90 mcg, Inositol 50 mg, Coenzyme Q10 30 mg, and Alpha Lipoic Acid 25 mg. Pack of 30 tablets (serving size = 1 tablet). Complies with DRAP Act 2012; GMP certified. This is a nutraceutical supplement, not a treatment for any disease.',
+      directions: 'Take one tablet daily with a meal or as directed by a physician. Do not exceed the recommended dose. For adult women only. Consult a physician if pregnant, breastfeeding, on other medications, or allergic to any ingredient. Stop use and seek medical advice if any adverse reaction occurs.',
+      ingredients: [
+        { name: 'Retinol acetate (Vit A)', amount: '2500 IU' },
+        { name: 'Ascorbic acid (Vit C)', amount: '100 mg' },
+        { name: 'Cholecalciferol (Vit D3)', amount: '800 IU' },
+        { name: 'Alpha tocopherol acetate (Vit E)', amount: '30 IU' },
+        { name: 'Thiamine HCL (Vit B1)', amount: '1.5 mg' },
+        { name: 'Riboflavin (Vit B2)', amount: '2 mg' },
+        { name: 'Niacin (Vit B3)', amount: '22 mg' },
+        { name: 'Pyridoxine HCL (Vit B6)', amount: '2 mg' },
+        { name: 'Folic acid', amount: '600 mcg' },
+        { name: 'Cyanocobalamin (Vit B12)', amount: '10 mcg' },
+        { name: 'Biotin', amount: '2500 mcg' },
+        { name: 'Calcium Pantothenate', amount: '15 mg' },
+        { name: 'Vitamin K2', amount: '90 mcg' },
+        { name: 'Inositol', amount: '50 mg' },
+        { name: 'Coenzyme Q10', amount: '30 mg' },
+        { name: 'Alpha Lipoic Acid', amount: '25 mg' }
+      ]
+    },
   };
 
   // Get current product based on URL parameter
@@ -321,6 +442,42 @@ const ProductDetailPage = ({ addToCart }) => {
       originalPrice: 5800,
       discountedPrice: 5300,
       image: '/assets/products/other-product/nebulizer-machne-crtza.webp'
+    },
+    {
+      id: 'prod-8',
+      name: 'Nurose Collagen Capsules',
+      rating: 4.7,
+      reviews: 95,
+      originalPrice: 1990,
+      discountedPrice: 1790,
+      image: '/assets/products/product-3.jpeg'
+    },
+    {
+      id: 'prod-9',
+      name: "BioMed's Teenur",
+      rating: 4.6,
+      reviews: 112,
+      originalPrice: 1590,
+      discountedPrice: 1440,
+      image: '/assets/products/product-4.jpeg'
+    },
+    {
+      id: 'prod-10',
+      name: 'Magioo Magnesium Glycinate',
+      rating: 4.8,
+      reviews: 178,
+      originalPrice: 2250,
+      discountedPrice: 2030,
+      image: '/assets/products/product-5.jpeg'
+    },
+    {
+      id: 'prod-11',
+      name: 'VNUR WOMEN Once a Day Multi',
+      rating: 4.7,
+      reviews: 145,
+      originalPrice: 2500,
+      discountedPrice: 2250,
+      image: '/assets/products/product-6.jpeg'
     }
   ];
 
