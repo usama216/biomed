@@ -106,6 +106,15 @@ const TrendingProducts = ({ addToCart }) => {
       originalPrice: 2500,
       discountedPrice: 2250,
       image: '/assets/products/product-6.jpeg'
+    },
+    {
+      id: 'prod-12',
+      name: 'DeAll Vitamin D3 200,000 IU & Vitamin K2 Softgel',
+      rating: 4.8,
+      reviews: 98,
+      originalPrice: 500,
+      discountedPrice: 435,
+      image: '/assets/products/product-7-A1.jpeg'
     }
   ];
 

@@ -373,6 +373,34 @@ const ProductDetailPage = ({ addToCart }) => {
         { name: 'Alpha Lipoic Acid', amount: '25 mg' }
       ]
     },
+    'prod-12': {
+      id: 'prod-12',
+      name: 'DeAll Vitamin D3 200,000 IU & Vitamin K2 Softgel',
+      rating: 4.8,
+      reviews: 98,
+      questions: 5,
+      originalPrice: 500,
+      discountedPrice: 435,
+      images: [
+        '/assets/products/product-7-A1.jpeg',
+        '/assets/products/product-7-A2.jpeg'
+      ],
+      packSize: '1 Softgel',
+      wellnessCoins: 435,
+      inStock: true,
+      helps: [
+        'Immune Health: Boosts the body\'s natural defense system',
+        'Energy & Vitality: Enhances overall energy levels for daily performance',
+        'Muscle Health: Supports muscle function and recovery',
+        'Bone Health: Promotes calcium utilization for strong bones and teeth'
+      ],
+      details: 'DeAll is a premium softgel supplement that combines Vitamin D3 (200,000 IU) with Vitamin K2, formulated by BioMed Innovation Pharmaceuticals Pvt Ltd. This powerful blend supports multiple aspects of health, including immune function, energy & vitality, muscle strength, and bone health. Vitamin D3 ensures optimal calcium absorption, while Vitamin K2 directs calcium to the bones and teeth, promoting overall skeletal wellness. The combination of these two essential vitamins works synergistically to support neurological and skeletal health, making DeAll an ideal choice for comprehensive nutritional support.',
+      directions: 'Take 1 softgel as directed by a healthcare professional, preferably with a meal for better absorption. Do not exceed the recommended dose. Consult a physician if you are pregnant, breastfeeding, on other medications, or have any medical conditions.',
+      ingredients: [
+        { name: 'Vitamin D3 (Cholecalciferol)', amount: '200,000 IU' },
+        { name: 'Vitamin K2 (Menaquinone)', amount: 'As per formulation' }
+      ]
+    },
   };
 
   // Get current product based on URL parameter
@@ -478,6 +506,15 @@ const ProductDetailPage = ({ addToCart }) => {
       originalPrice: 2500,
       discountedPrice: 2250,
       image: '/assets/products/product-6.jpeg'
+    },
+    {
+      id: 'prod-12',
+      name: 'DeAll Vitamin D3 200,000 IU & Vitamin K2 Softgel',
+      rating: 4.8,
+      reviews: 98,
+      originalPrice: 500,
+      discountedPrice: 435,
+      image: '/assets/products/product-7-A1.jpeg'
     }
   ];
 

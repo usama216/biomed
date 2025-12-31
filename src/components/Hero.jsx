@@ -10,6 +10,7 @@ const Hero = () => {
     '/assets/hero-section-banner/banner-image-3.jpg',
     '/assets/hero-section-banner/banner-image-4.jpg',
     '/assets/hero-section-banner/banner-image-5.jpg',
+    '/assets/hero-section-banner/banner-image-6.jpg',
   ];
 
   // Auto-play carousel

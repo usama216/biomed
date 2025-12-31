@@ -142,6 +142,17 @@ const ProductsPage = ({ addToCart }) => {
       image: '/assets/products/product-6.jpeg',
       description: 'Once-daily multivitamin tablet specially formulated for adult women, enriched with Inositol, Alpha Lipoic Acid & Biotin 2500 mcg. Provides nutritional support, energy metabolism boost, healthy hair, skin & nails, and immunity enhancement.',
       inStock: true
+    },
+    {
+      id: 'prod-12',
+      name: 'DeAll Vitamin D3 200,000 IU & Vitamin K2 Softgel',
+      rating: 4.8,
+      reviews: 98,
+      originalPrice: 500,
+      discountedPrice: 435,
+      image: '/assets/products/product-7-A1.jpeg',
+      description: 'DeAll is a premium softgel supplement that combines Vitamin D3 (200,000 IU) with Vitamin K2, formulated by BioMed Innovation Pharmaceuticals Pvt Ltd. This powerful blend supports multiple aspects of health, including immune function, energy & vitality, muscle strength, and bone health.',
+      inStock: true
     }
   ];
 

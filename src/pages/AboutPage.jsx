@@ -243,12 +243,15 @@ const AboutPage = () => {
                 { num: 1, image: '/assets/products/main-product.jpeg', name: 'Magnesium Glycinate | Magnizen' },
                 { num: 2, image: '/assets/products/product-1.jpeg', name: 'Vanur Men' },
                 { num: 3, image: '/assets/products/product-2.jpeg', name: 'Vanur Women' },
+                { num: 4, image: '/assets/products/product-7-A1.jpeg', name: 'DeAll Vitamin D3 200,000 IU & Vitamin K2 Softgel' },
                 { num: 1, image: '/assets/products/main-product.jpeg', name: 'Magnesium Glycinate | Magnizen' },
                 { num: 2, image: '/assets/products/product-1.jpeg', name: 'Vanur Men' },
                 { num: 3, image: '/assets/products/product-2.jpeg', name: 'Vanur Women' },
+                { num: 4, image: '/assets/products/product-7-A1.jpeg', name: 'DeAll Vitamin D3 200,000 IU & Vitamin K2 Softgel' },
                 { num: 1, image: '/assets/products/main-product.jpeg', name: 'Magnesium Glycinate | Magnizen' },
                 { num: 2, image: '/assets/products/product-1.jpeg', name: 'Vanur Men' },
-                { num: 3, image: '/assets/products/product-2.jpeg', name: 'Vanur Women' }
+                { num: 3, image: '/assets/products/product-2.jpeg', name: 'Vanur Women' },
+                { num: 4, image: '/assets/products/product-7-A1.jpeg', name: 'DeAll Vitamin D3 200,000 IU & Vitamin K2 Softgel' }
             
               ].map((item) => (
                 <div 
