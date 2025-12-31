@@ -1,12 +1,48 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getImageUrl } from '../utils/imageUtils';
+
+const API_BASE_URL = 'https://biomed-phamacy-backend.vercel.app/api';
 
 const LatestOffers = ({ addToCart }) => {
   const scrollContainerRef = useRef(null);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
-  
-  const offers = [
+  const [offers, setOffers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch products from API
+  useEffect(() => {
+    const fetchOffers = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`${API_BASE_URL}/products`);
+        const data = await response.json();
+        // Convert products to offers format
+        const offersData = (data.products || []).map(product => ({
+          id: product.id,
+          name: product.name,
+          price: product.discountedPrice || product.originalPrice,
+          image: product.image || (product.images && product.images[0]) || '',
+          rating: product.rating || 0,
+          reviews: product.reviews || 0,
+          originalPrice: product.originalPrice,
+          discountedPrice: product.discountedPrice
+        }));
+        setOffers(offersData);
+      } catch (error) {
+        console.error('Error fetching offers:', error);
+        setOffers([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOffers();
+  }, []);
+
+  // Static offers removed - now using API
+  const _offers_removed = [
     {
       id: 'prod-1',
       name: 'Magnesium Glycinate | Magnizen',
@@ -180,44 +216,54 @@ const LatestOffers = ({ addToCart }) => {
           <div className="hidden md:block absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
           <div className="hidden md:block absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
           
-          <div 
-            ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide"
-            onMouseEnter={() => setIsAutoScrolling(false)}
-            onMouseLeave={() => setIsAutoScrolling(true)}
-          >
-            {duplicatedOffers.map((offer, idx) => (
-              <Link 
-                key={`offer-${idx}`} 
-                to={`/product/${offer.id}`}
-                className="w-[320px] min-w-[320px] max-w-[320px] bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-shadow flex-shrink-0 block cursor-pointer"
-              >
-                <div className="h-64 flex items-center justify-center bg-gray-50 relative overflow-hidden">
-                  <img 
-                    src={offer.image} 
-                    alt={offer.name} 
-                    className="w-full h-full object-contain hover:scale-105 transition-transform"
-                  />
-                  <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                    SALE
-                  </div>
+              {loading ? (
+                <div className="flex items-center justify-center py-12">
+                  <p className="text-gray-500">Loading offers...</p>
                 </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-gray-900 mb-2 h-12 line-clamp-2">{offer.name}</h3>
-                  <p className="text-2xl font-bold text-biomed-teal mb-4">Rs. {offer.discountedPrice}</p>
-                  <button 
-                    onClick={(e) => {
-                      e.preventDefault();
-                      addToCart(offer);
-                    }}
-                    className="w-full bg-biomed-navy hover:bg-biomed-navy/90 text-white py-2 rounded-lg font-semibold transition-colors"
-                  >
-                    Add to Cart
-                  </button>
+              ) : duplicatedOffers.length === 0 ? (
+                <div className="flex items-center justify-center py-12">
+                  <p className="text-gray-500">No offers available</p>
                 </div>
-              </Link>
-            ))}
-          </div>
+              ) : (
+                <div 
+                  ref={scrollContainerRef}
+                  className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide"
+                  onMouseEnter={() => setIsAutoScrolling(false)}
+                  onMouseLeave={() => setIsAutoScrolling(true)}
+                >
+                  {duplicatedOffers.map((offer, idx) => (
+                    <Link 
+                      key={`offer-${offer.id}-${idx}`} 
+                      to={`/product/${offer.id}`}
+                      className="w-[320px] min-w-[320px] max-w-[320px] bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-shadow flex-shrink-0 block cursor-pointer"
+                    >
+                      <div className="h-64 flex items-center justify-center bg-gray-50 relative overflow-hidden">
+                        <img 
+                          src={getImageUrl(offer.image || (offer.images && offer.images.length > 0 ? offer.images[0] : ''))} 
+                          alt={offer.name} 
+                          className="w-full h-full object-contain hover:scale-105 transition-transform"
+                        />
+                        <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                          SALE
+                        </div>
+                      </div>
+                      <div className="p-4">
+                        <h3 className="font-semibold text-gray-900 mb-2 h-12 line-clamp-2">{offer.name}</h3>
+                        <p className="text-2xl font-bold text-biomed-teal mb-4">Rs. {offer.discountedPrice}</p>
+                        <button 
+                          onClick={(e) => {
+                            e.preventDefault();
+                            if (addToCart) addToCart(offer);
+                          }}
+                          className="w-full bg-biomed-navy hover:bg-biomed-navy/90 text-white py-2 rounded-lg font-semibold transition-colors"
+                        >
+                          Add to Cart
+                        </button>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
           <button 
             onClick={scrollLeft}
             className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-100 z-10 transition-all hover:scale-110"

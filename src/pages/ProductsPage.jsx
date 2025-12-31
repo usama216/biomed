@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Star, ShoppingCart, Grid, List } from 'lucide-react';
 import { useParams, Link } from 'react-router-dom';
+import { getImageUrl } from '../utils/imageUtils';
+
+const API_BASE_URL = 'https://biomed-phamacy-backend.vercel.app/api';
 
 const ProductsPage = ({ addToCart }) => {
   const { category } = useParams();
@@ -8,9 +11,30 @@ const ProductsPage = ({ addToCart }) => {
   const [viewMode, setViewMode] = useState('grid');
   const [itemsPerPage, setItemsPerPage] = useState(20);
   const [sortBy, setSortBy] = useState('bestselling');
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  // Fetch products from API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`${API_BASE_URL}/products`);
+        const data = await response.json();
+        setProducts(data.products || []);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+        setProducts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   const categories = [
@@ -21,7 +45,8 @@ const ProductsPage = ({ addToCart }) => {
     "Men's Health", 'Multivitamins', "Women's Health"
   ];
 
-  const products = [
+  // Static products removed - now using API
+  const staticProducts = [
     {
       id: 'prod-1',
       name: 'Magnesium Glycinate | Magnizen',
@@ -154,7 +179,7 @@ const ProductsPage = ({ addToCart }) => {
       description: 'DeAll is a premium softgel supplement that combines Vitamin D3 (200,000 IU) with Vitamin K2, formulated by BioMed Innovation Pharmaceuticals Pvt Ltd. This powerful blend supports multiple aspects of health, including immune function, energy & vitality, muscle strength, and bone health.',
       inStock: true
     }
-  ];
+  ]; // This array is no longer used - kept for reference only
 
   const getCategoryTitle = () => {
     if (!category) return 'All Products';
@@ -291,8 +316,17 @@ const ProductsPage = ({ addToCart }) => {
             </div>
 
             {/* Products Grid */}
-            <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'grid-cols-1 gap-4'}`}>
-              {products.map((product) => (
+            {loading ? (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-500">Loading products...</p>
+              </div>
+            ) : products.length === 0 ? (
+              <div className="col-span-full text-center py-12">
+                <p className="text-gray-500">No products found</p>
+              </div>
+            ) : (
+              <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'grid-cols-1 gap-4'}`}>
+                {products.map((product) => (
                 <Link 
                   key={product.id} 
                   to={`/product/${product.id}`}
@@ -301,7 +335,7 @@ const ProductsPage = ({ addToCart }) => {
                   <div className="relative">
                     <div className="h-64 bg-gray-50 flex items-center justify-center p-4">
                       <img 
-                        src={product.image} 
+                        src={getImageUrl(product.image || (product.images && product.images.length > 0 ? product.images[0] : ''))} 
                         alt={product.name}
                         className="w-full h-full object-contain"
                       />
@@ -329,7 +363,10 @@ const ProductsPage = ({ addToCart }) => {
                       <span className="text-xs text-gray-600">({product.reviews})</span>
                     </div>
 
-                    <p className="text-sm text-gray-600 mb-3 line-clamp-2">{product.description}</p>
+                    <div 
+                      className="text-sm text-gray-600 mb-3 line-clamp-2"
+                      dangerouslySetInnerHTML={{ __html: product.description || '' }}
+                    />
 
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-gray-400 line-through text-sm">Rs. {product.originalPrice}</span>
@@ -358,7 +395,8 @@ const ProductsPage = ({ addToCart }) => {
                   </div>
                 </Link>
               ))}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

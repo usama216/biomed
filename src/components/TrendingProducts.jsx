@@ -1,129 +1,44 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight, ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getImageUrl } from '../utils/imageUtils';
+
+const API_BASE_URL = 'https://biomed-phamacy-backend.vercel.app/api';
 
 const TrendingProducts = ({ addToCart }) => {
   const [activeTab, setActiveTab] = useState('bestselling');
   const scrollContainerRef = useRef(null);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
-  
-  const products = [
-    {
-      id: 'prod-1',
-      name: 'Magnesium Glycinate | Magnizen',
-      rating: 4.5,
-      reviews: 120,
-      originalPrice: 4500,
-      discountedPrice: 3500,
-      image: '/assets/products/main-product.jpeg'
-    },
-    {
-      id: 'prod-2',
-      name: 'Vanur Men',
-      rating: 4.8,
-      reviews: 89,
-      originalPrice: 2000,
-      discountedPrice: 1650,
-      image: '/assets/products/product-1.jpeg'
-    },
-    {
-      id: 'prod-3',
-      name: 'Vanur Women',
-      rating: 4.6,
-      reviews: 156,
-      originalPrice: 1800,
-      discountedPrice: 1500,
-      image: '/assets/products/product-2.jpeg'
-    },
-    {
-      id: 'prod-4',
-      name: 'Certeza BM-405 Digital Blood Pressure Monitor',
-      rating: 4.7,
-      reviews: 245,
-      originalPrice: 6500,
-      discountedPrice: 5950,
-      image: '/assets/products/other-product/Certeza-1.webp'
-    },
-    {
-      id: 'prod-5',
-      name: 'Bookang – B.P Apparatus Aneroid',
-      rating: 4.6,
-      reviews: 189,
-      originalPrice: 2800,
-      discountedPrice: 2500,
-      image: '/assets/products/other-product/Bookang.jpg'
-    },
-    {
-      id: 'prod-6',
-      name: 'Electric Heating Pad',
-      rating: 4.8,
-      reviews: 312,
-      originalPrice: 3500,
-      discountedPrice: 3200,
-      image: '/assets/products/other-product/electric-heating-pad.webp'
-    },
-    {
-      id: 'prod-7',
-      name: 'Certeza Nb-607 Nebulizer Machine',
-      rating: 4.9,
-      reviews: 428,
-      originalPrice: 5800,
-      discountedPrice: 5300,
-      image: '/assets/products/other-product/nebulizer-machne-crtza.webp'
-    },
-    {
-      id: 'prod-8',
-      name: 'Nurose Collagen Capsules',
-      rating: 4.7,
-      reviews: 95,
-      originalPrice: 1990,
-      discountedPrice: 1790,
-      image: '/assets/products/product-3.jpeg'
-    },
-    {
-      id: 'prod-9',
-      name: "BioMed's Teenur",
-      rating: 4.6,
-      reviews: 112,
-      originalPrice: 1590,
-      discountedPrice: 1440,
-      image: '/assets/products/product-4.jpeg'
-    },
-    {
-      id: 'prod-10',
-      name: 'Magioo Magnesium Glycinate',
-      rating: 4.8,
-      reviews: 178,
-      originalPrice: 2250,
-      discountedPrice: 2030,
-      image: '/assets/products/product-5.jpeg'
-    },
-    {
-      id: 'prod-11',
-      name: 'VNUR WOMEN Once a Day Multi',
-      rating: 4.7,
-      reviews: 145,
-      originalPrice: 2500,
-      discountedPrice: 2250,
-      image: '/assets/products/product-6.jpeg'
-    },
-    {
-      id: 'prod-12',
-      name: 'DeAll Vitamin D3 200,000 IU & Vitamin K2 Softgel',
-      rating: 4.8,
-      reviews: 98,
-      originalPrice: 500,
-      discountedPrice: 435,
-      image: '/assets/products/product-7-A1.jpeg'
-    }
-  ];
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch products from API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`${API_BASE_URL}/products`);
+        const data = await response.json();
+        setProducts(data.products || []);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+        setProducts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   // Duplicate products for seamless infinite scroll
-  const duplicatedProducts = [...products, ...products, ...products];
+  const duplicatedProducts = products.length > 0 
+    ? [...products, ...products, ...products]
+    : [];
 
   // Infinite scroll auto-play
   useEffect(() => {
-    if (!isAutoScrolling) return;
+    if (!isAutoScrolling || duplicatedProducts.length === 0) return;
     
     const interval = setInterval(() => {
       if (scrollContainerRef.current) {
@@ -142,7 +57,7 @@ const TrendingProducts = ({ addToCart }) => {
     }, 20); // Smooth continuous scroll
 
     return () => clearInterval(interval);
-  }, [isAutoScrolling]);
+  }, [isAutoScrolling, duplicatedProducts.length]);
 
   // Carousel scroll functions
   const scrollLeft = () => {
@@ -168,7 +83,7 @@ const TrendingProducts = ({ addToCart }) => {
   };
 
   const handleAddToCart = (product) => {
-    addToCart(product);
+    if (addToCart) addToCart(product);
   };
 
   return (
@@ -205,67 +120,83 @@ const TrendingProducts = ({ addToCart }) => {
           <div className="hidden md:block absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
           <div className="hidden md:block absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
           
-          <div 
-            ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide"
-            onMouseEnter={() => setIsAutoScrolling(false)}
-            onMouseLeave={() => setIsAutoScrolling(true)}
-          >
-            {duplicatedProducts.map((product, idx) => (
-              <Link 
-                key={`product-${idx}`} 
-                to={`/product/${product.id}`}
-                className="w-[280px] min-w-[280px] max-w-[280px] bg-white border rounded-lg p-4 hover:shadow-lg transition-shadow flex-shrink-0 block cursor-pointer"
+          {loading ? (
+            <div className="flex items-center justify-center py-12">
+              <p className="text-gray-500">Loading products...</p>
+            </div>
+          ) : duplicatedProducts.length === 0 ? (
+            <div className="flex items-center justify-center py-12">
+              <p className="text-gray-500">No products available</p>
+            </div>
+          ) : (
+            <>
+              {/* Left Scroll Button */}
+              <button
+                onClick={scrollLeft}
+                className="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
               >
-                <div className="h-48 rounded-lg mb-4 flex items-center justify-center bg-gray-50 overflow-hidden">
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="w-full h-full object-contain hover:scale-105 transition-transform"
-                  />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2 h-12 line-clamp-2">{product.name}</h3>
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={16}
-                        className={i < Math.floor(product.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}
+                <ChevronLeft size={24} className="text-gray-700" />
+              </button>
+
+              {/* Right Scroll Button */}
+              <button
+                onClick={scrollRight}
+                className="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors"
+              >
+                <ChevronRight size={24} className="text-gray-700" />
+              </button>
+
+              <div 
+                ref={scrollContainerRef}
+                className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide"
+                onMouseEnter={() => setIsAutoScrolling(false)}
+                onMouseLeave={() => setIsAutoScrolling(true)}
+              >
+                {duplicatedProducts.map((product, idx) => (
+                  <Link 
+                    key={`product-${product.id}-${idx}`} 
+                    to={`/product/${product.id}`}
+                    className="w-[280px] min-w-[280px] max-w-[280px] bg-white border rounded-lg p-4 hover:shadow-lg transition-shadow flex-shrink-0 block cursor-pointer"
+                  >
+                    <div className="h-48 rounded-lg mb-4 flex items-center justify-center bg-gray-50 overflow-hidden">
+                      <img 
+                        src={getImageUrl(product.image || (product.images && product.images.length > 0 ? product.images[0] : ''))} 
+                        alt={product.name} 
+                        className="w-full h-full object-contain hover:scale-105 transition-transform"
                       />
-                    ))}
-                  </div>
-                  <span className="text-sm text-gray-600">({product.reviews})</span>
-                </div>
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-gray-400 line-through text-sm">Rs. {product.originalPrice}</span>
-                  <span className="text-xl font-bold text-biomed-teal">Rs. {product.discountedPrice}</span>
-                </div>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleAddToCart(product);
-                  }}
-                  className="w-full bg-biomed-navy hover:bg-biomed-navy/90 text-white py-2 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
-                >
-                  <ShoppingCart size={18} />
-                  Add to Cart
-                </button>
-              </Link>
-            ))}
-          </div>
-          <button 
-            onClick={scrollLeft}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-100 z-10 transition-all hover:scale-110"
-          >
-            <ChevronLeft size={24} />
-          </button>
-          <button 
-            onClick={scrollRight}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-100 z-10 transition-all hover:scale-110"
-          >
-            <ChevronRight size={24} />
-          </button>
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-2 h-12 line-clamp-2">{product.name}</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            size={16}
+                            className={i < Math.floor(product.rating || 0) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-sm text-gray-600">({product.reviews || 0})</span>
+                    </div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-gray-400 line-through text-sm">Rs. {product.originalPrice}</span>
+                      <span className="text-xl font-bold text-biomed-teal">Rs. {product.discountedPrice}</span>
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleAddToCart(product);
+                      }}
+                      className="w-full bg-biomed-navy hover:bg-biomed-navy/90 text-white py-2 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+                    >
+                      <ShoppingCart size={18} />
+                      Add to Cart
+                    </button>
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>
@@ -273,4 +204,3 @@ const TrendingProducts = ({ addToCart }) => {
 };
 
 export default TrendingProducts;
-

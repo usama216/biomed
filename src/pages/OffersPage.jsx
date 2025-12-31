@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Star, ShoppingCart, Grid, List, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getImageUrl } from '../utils/imageUtils';
+
+const API_BASE_URL = 'https://biomed-phamacy-backend.vercel.app/api';
 
 const OffersPage = ({ addToCart }) => {
   const [priceRange, setPriceRange] = useState([0, 4500]);
@@ -12,9 +15,45 @@ const OffersPage = ({ addToCart }) => {
   const [expandedCategories, setExpandedCategories] = useState(true);
   const [inStock, setInStock] = useState(true);
   const [outOfStock, setOutOfStock] = useState(false);
+  const [offerProducts, setOfferProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  // Fetch products from API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`${API_BASE_URL}/products`);
+        const data = await response.json();
+        const products = data.products || [];
+        
+        // Calculate sale percentage for each product and add isFree flag
+        const productsWithOffers = products.map(product => {
+          const salePercentage = product.originalPrice && product.discountedPrice
+            ? Math.round(((product.originalPrice - product.discountedPrice) / product.originalPrice) * 100)
+            : 0;
+          
+          return {
+            ...product,
+            salePercentage,
+            isFree: false // You can add logic to determine if product is free
+          };
+        });
+        
+        setOfferProducts(productsWithOffers);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+        setOfferProducts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   const categories = [
@@ -25,8 +64,8 @@ const OffersPage = ({ addToCart }) => {
     "Men's Health", 'Multivitamins'
   ];
 
-  // Combo/Offer Products - Based on 3 Major Products
-  const offerProducts = [
+  // Static offerProducts removed - now using API
+  const _offerProducts_removed = [
     {
       id: 'prod-1',
       name: 'Magnesium Glycinate | Magnizen',
@@ -347,8 +386,17 @@ const OffersPage = ({ addToCart }) => {
               </div>
 
               {/* Products Grid */}
-              <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-6'}>
-                {offerProducts.map((product) => (
+              {loading ? (
+                <div className="col-span-full text-center py-12">
+                  <p className="text-gray-500">Loading products...</p>
+                </div>
+              ) : offerProducts.length === 0 ? (
+                <div className="col-span-full text-center py-12">
+                  <p className="text-gray-500">No products found</p>
+                </div>
+              ) : (
+                <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-6'}>
+                  {offerProducts.map((product) => (
                   <Link 
                     key={product.id} 
                     to={`/product/${product.id}`}
@@ -357,7 +405,7 @@ const OffersPage = ({ addToCart }) => {
                     {/* Image Container */}
                     <div className="relative">
                       <img 
-                        src={product.image} 
+                        src={getImageUrl(product.image || (product.images && product.images.length > 0 ? product.images[0] : ''))} 
                         alt={product.name}
                         className="w-full h-64 object-contain p-4 group-hover:scale-105 transition-transform duration-300"
                       />
@@ -385,7 +433,10 @@ const OffersPage = ({ addToCart }) => {
                       </div>
 
                       {/* Description */}
-                      <p className="text-sm text-gray-600 mb-3 line-clamp-2">{product.description}</p>
+                      <div 
+                        className="text-sm text-gray-600 mb-3 line-clamp-2"
+                        dangerouslySetInnerHTML={{ __html: product.description || '' }}
+                      />
 
                       {/* Price */}
                       <div className="flex items-center gap-2 mb-4">
@@ -414,8 +465,9 @@ const OffersPage = ({ addToCart }) => {
                       </div>
                     </div>
                   </Link>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

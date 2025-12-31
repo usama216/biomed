@@ -1,12 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Star, Plus, Minus, ShoppingCart, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { useParams, Link } from 'react-router-dom';
+import { getImageUrl, getVideoUrl } from '../utils/imageUtils';
+
+const API_BASE_URL = 'https://biomed-phamacy-backend.vercel.app/api';
 
 const ProductDetailPage = ({ addToCart }) => {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
-  const [isVideoMode, setIsVideoMode] = useState(id === 'prod-1'); // Video mode for prod-1 only
+  const [isVideoMode, setIsVideoMode] = useState(false);
+  const [product, setProduct] = useState(null);
+  const [allProducts, setAllProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [expandedSections, setExpandedSections] = useState({
     details: true,
     directions: true,
@@ -17,12 +23,56 @@ const ProductDetailPage = ({ addToCart }) => {
   });
   const relatedScrollRef = useRef(null);
 
+  // Fetch product by ID
   useEffect(() => {
-    window.scrollTo(0, 0);
-    // Reset video mode when product changes
-    setIsVideoMode(id === 'prod-1');
-    setSelectedImage(0);
+    const fetchProduct = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`${API_BASE_URL}/products/${id}`);
+        const data = await response.json();
+        
+        if (data.product) {
+          setProduct(data.product);
+          // Set video mode if product has video
+          setIsVideoMode(!!data.product.video);
+        } else {
+          // Fallback: fetch all products and find the one
+          const allRes = await fetch(`${API_BASE_URL}/products`);
+          const allData = await allRes.json();
+          const foundProduct = allData.products?.find(p => p.id === id);
+          if (foundProduct) {
+            setProduct(foundProduct);
+            setIsVideoMode(!!foundProduct.video);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching product:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchProduct();
+      window.scrollTo(0, 0);
+      setSelectedImage(0);
+    }
   }, [id]);
+
+  // Fetch all products for related products section
+  useEffect(() => {
+    const fetchAllProducts = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/products`);
+        const data = await response.json();
+        setAllProducts(data.products || []);
+      } catch (error) {
+        console.error('Error fetching all products:', error);
+      }
+    };
+
+    fetchAllProducts();
+  }, []);
 
   const toggleSection = (section) => {
     setExpandedSections(prev => ({
@@ -49,8 +99,9 @@ const ProductDetailPage = ({ addToCart }) => {
     }
   };
 
-  // Complete product database
-  const productsDatabase = {
+  // Static product database removed - now using API
+  // Keeping this comment for reference
+  const _productsDatabase_removed = {
     'prod-1': {
       id: 'prod-1',
       name: 'Magnesium Glycinate | Magnizen',
@@ -403,11 +454,11 @@ const ProductDetailPage = ({ addToCart }) => {
     },
   };
 
-  // Get current product based on URL parameter
-  const product = productsDatabase[id] || productsDatabase['prod-1'];
+  // Product and allProducts are now fetched from API (see useEffect hooks above)
+  // Removed static data - now using API
 
-  // All products from landing page
-  const allProducts = [
+  // Static allProducts array removed - now using API
+  const _allProducts_removed = [
     {
       id: 'prod-1',
       name: 'Magnesium Glycinate | Magnizen',
@@ -516,12 +567,42 @@ const ProductDetailPage = ({ addToCart }) => {
       discountedPrice: 435,
       image: '/assets/products/product-7-A1.jpeg'
     }
-  ];
+  ]; // Static array removed - now using API
 
   // Filter out current product and get related products
-  const relatedProducts = allProducts.filter(p => p.id !== id);
+  const relatedProducts = allProducts.filter(p => p.id !== id).slice(0, 6);
 
   const certifications = ['ISO', 'GMP', 'DRAP', 'HACCP', 'HALAL', 'NON GMO', 'VEGAN'];
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-600 text-lg">Loading product...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state if product not found
+  if (!product) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-600 text-lg">Product not found</p>
+          <Link to="/products" className="text-blue-600 hover:underline mt-4 inline-block">
+            Go back to products
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  // Normalize images array
+  const productImages = product.images && Array.isArray(product.images) 
+    ? product.images 
+    : (product.image ? [product.image] : []);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -533,9 +614,9 @@ const ProductDetailPage = ({ addToCart }) => {
             {/* Main Image/Video - Sticky */}
             <div className="sticky top-4">
               <div className="bg-gray-50 rounded-lg p-8 mb-3 flex items-center justify-center h-[500px]">
-                {product.id === 'prod-1' && isVideoMode ? (
+                {isVideoMode && product.video ? (
                   <video 
-                    src={product.video}
+                    src={getVideoUrl(product.video)}
                     autoPlay
                     loop
                     muted
@@ -547,17 +628,17 @@ const ProductDetailPage = ({ addToCart }) => {
                   </video>
                 ) : (
                   <img 
-                    src={product.images[selectedImage]} 
+                    src={getImageUrl(productImages.length > 0 ? productImages[selectedImage] : product.image)} 
                     alt={product.name}
                     className="max-h-full max-w-full object-contain"
                   />
                 )}
               </div>
               
-              {/* Thumbnail Images - Show for prod-1 always, or if more than 1 image */}
-              {(product.id === 'prod-1' || product.images.length > 1) && (
+              {/* Thumbnail Images - Show if video exists or if more than 1 image */}
+              {(product.video || productImages.length > 1) && (
                 <div className="flex gap-3">
-                  {product.id === 'prod-1' ? (
+                  {product.video && (
                     <>
                       {/* Video thumbnail */}
                       <button
@@ -576,7 +657,7 @@ const ProductDetailPage = ({ addToCart }) => {
                         </div>
                       </button>
                       {/* Image thumbnails */}
-                      {product.images.map((img, idx) => (
+                      {productImages.map((img, idx) => (
                         <button
                           key={idx}
                           onClick={() => {
@@ -588,30 +669,29 @@ const ProductDetailPage = ({ addToCart }) => {
                           }`}
                         >
                           <img 
-                            src={img} 
+                            src={getImageUrl(img)} 
                             alt={`${product.name} ${idx + 1}`}
                             className="w-full h-16 object-contain"
                           />
                         </button>
                       ))}
                     </>
-                  ) : (
-                    product.images.map((img, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setSelectedImage(idx)}
-                        className={`flex-1 bg-gray-50 rounded-lg p-2 border-2 transition-colors ${
-                          selectedImage === idx ? 'border-biomed-teal' : 'border-transparent'
-                        }`}
-                      >
-                        <img 
-                          src={img} 
-                          alt={`${product.name} ${idx + 1}`}
-                          className="w-full h-16 object-contain"
-                        />
-                      </button>
-                    ))
                   )}
+                  {!product.video && productImages.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setSelectedImage(idx)}
+                      className={`flex-1 bg-gray-50 rounded-lg p-2 border-2 transition-colors ${
+                        selectedImage === idx ? 'border-biomed-teal' : 'border-transparent'
+                      }`}
+                    >
+                      <img 
+                        src={getImageUrl(img)} 
+                        alt={`${product.name} ${idx + 1}`}
+                        className="w-full h-16 object-contain"
+                      />
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
@@ -664,25 +744,29 @@ const ProductDetailPage = ({ addToCart }) => {
             </div>
 
             {/* Helps Section */}
-            <div className="mb-4 bg-blue-50 p-3 rounded-lg">
-              <h3 className="font-semibold text-sm mb-2">Helps to:</h3>
-              <ul className="space-y-1">
-                {product.helps.map((help, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <span className="text-biomed-teal text-xs mt-0.5">•</span>
-                    <span className="text-xs text-gray-700">{help}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {product.helps && product.helps.length > 0 && (
+              <div className="mb-4 bg-blue-50 p-3 rounded-lg">
+                <h3 className="font-semibold text-sm mb-2">Helps to:</h3>
+                <ul className="space-y-1">
+                  {product.helps.map((help, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-biomed-teal text-xs mt-0.5">•</span>
+                      <span className="text-xs text-gray-700">{help}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Pack Size */}
-            <div className="mb-3">
-              <label className="block text-xs font-semibold mb-1">Pack Size:</label>
-              <button className="px-4 py-1.5 bg-biomed-navy text-white rounded text-sm font-semibold">
-                {product.packSize}
-              </button>
-            </div>
+            {product.packSize && (
+              <div className="mb-3">
+                <label className="block text-xs font-semibold mb-1">Pack Size:</label>
+                <button className="px-4 py-1.5 bg-biomed-navy text-white rounded text-sm font-semibold">
+                  {product.packSize}
+                </button>
+              </div>
+            )}
 
             {/* Quantity Selector */}
             <div className="mb-4">
@@ -705,10 +789,12 @@ const ProductDetailPage = ({ addToCart }) => {
             </div>
 
             {/* Wellness Coins */}
-            <div className="mb-4 bg-purple-50 p-3 rounded-lg">
-              <p className="text-sm font-semibold text-purple-700">{product.wellnessCoins} Wellness Coins</p>
-              <a href="#" className="text-xs text-purple-600 underline">How it works?</a>
-            </div>
+            {product.wellnessCoins && (
+              <div className="mb-4 bg-purple-50 p-3 rounded-lg">
+                <p className="text-sm font-semibold text-purple-700">{product.wellnessCoins} Wellness Coins</p>
+                <a href="#" className="text-xs text-purple-600 underline">How it works?</a>
+              </div>
+            )}
 
             {/* Subtotal */}
             <div className="mb-4">
@@ -754,7 +840,10 @@ const ProductDetailPage = ({ addToCart }) => {
                 </button>
                 <div className={`transition-all duration-300 ease-in-out ${expandedSections.details ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
                   <div className="px-3 pb-2">
-                    <p className="text-xs text-gray-700 leading-relaxed">{product.details}</p>
+                    <div 
+                      className="text-xs text-gray-700 leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: product.details || '' }}
+                    />
                   </div>
                 </div>
               </div>
@@ -770,7 +859,10 @@ const ProductDetailPage = ({ addToCart }) => {
                 </button>
                 <div className={`transition-all duration-300 ease-in-out ${expandedSections.directions ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
                   <div className="px-3 pb-2">
-                    <p className="text-xs text-gray-700">{product.directions}</p>
+                    <div 
+                      className="text-xs text-gray-700"
+                      dangerouslySetInnerHTML={{ __html: product.directions || '' }}
+                    />
                   </div>
                 </div>
               </div>
@@ -795,12 +887,16 @@ const ProductDetailPage = ({ addToCart }) => {
                         </tr>
                       </thead>
                       <tbody>
-                        {product.ingredients.map((ingredient, idx) => (
+                        {product.ingredients && product.ingredients.length > 0 ? product.ingredients.map((ingredient, idx) => (
                           <tr key={idx} className="border-b">
                             <td className="py-1 text-[10px]">{ingredient.name}</td>
                             <td className="py-1 text-[10px]">{ingredient.amount}</td>
                           </tr>
-                        ))}
+                        )) : (
+                          <tr>
+                            <td colSpan="2" className="py-2 text-[10px] text-gray-500 text-center">No ingredients listed</td>
+                          </tr>
+                        )}
                       </tbody>
                     </table>
                   </div>
