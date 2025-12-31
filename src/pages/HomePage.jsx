@@ -20,6 +20,26 @@ const HomePage = ({ addToCart }) => {
       <Certifications />
       <HealthCategories />
       <TrendingProducts addToCart={addToCart} />
+      
+      {/* Video Section */}
+      <section className="py-6 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-lg">
+            <video 
+              src="/assets/products/section-video.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-auto"
+              style={{ pointerEvents: 'none' }}
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </section>
+      
       <HealthConcerns />
       <Mission />
       {/* <Science /> */}
