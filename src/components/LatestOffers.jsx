@@ -116,6 +116,66 @@ const LatestOffers = ({ addToCart }) => {
       reviews: 145,
       originalPrice: 2500,
       discountedPrice: 2250
+    },
+    {
+      id: 'prod-12',
+      name: 'Ostical-D Tablets',
+      price: 1010,
+      image: '/assets/products/product-7.jpeg',
+      rating: 4.5,
+      reviews: 98,
+      originalPrice: 1120,
+      discountedPrice: 1010
+    },
+    {
+      id: 'prod-13',
+      name: 'Zincoo ZINC',
+      price: 855,
+      image: '/assets/products/product-10.jpeg',
+      rating: 4.6,
+      reviews: 87,
+      originalPrice: 950,
+      discountedPrice: 855
+    },
+    {
+      id: 'prod-14',
+      name: 'Ostical-D Tablets',
+      price: 1010,
+      image: '/assets/products/product-11.jpeg',
+      rating: 4.5,
+      reviews: 98,
+      originalPrice: 1120,
+      discountedPrice: 1010
+    },
+    {
+      id: 'prod-15',
+      name: 'Glutamed L-Glutathione with Vitamin C',
+      price: 3870,
+      image: '/assets/products/product-9.jpeg',
+      rating: 4.8,
+      reviews: 203,
+      originalPrice: 4300,
+      discountedPrice: 3870
+    },
+    {
+      id: 'prod-16',
+      name: 'Bio-12 Tablets (Mecobalamin 2000mcg)',
+      price: 1280,
+      image: '/assets/products/product-8.jpeg',
+      rating: 4.7,
+      reviews: 134,
+      originalPrice: 1420,
+      discountedPrice: 1280
+    },
+    {
+      id: 'prod-17',
+      name: 'Bomega Omega-3 500mg Capsule',
+      price: 1430,
+      image: '/assets/products/product-12.jpeg',
+      rating: 4.9,
+      reviews: 267,
+      originalPrice: 1590,
+      discountedPrice: 1430
     }
   ];
 

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Star, ShoppingCart, Grid, List } from 'lucide-react';
 import { useParams, Link } from 'react-router-dom';
@@ -142,6 +143,72 @@ const ProductsPage = ({ addToCart }) => {
       image: '/assets/products/product-6.jpeg',
       description: 'Once-daily multivitamin tablet specially formulated for adult women, enriched with Inositol, Alpha Lipoic Acid & Biotin 2500 mcg. Provides nutritional support, energy metabolism boost, healthy hair, skin & nails, and immunity enhancement.',
       inStock: true
+    },
+    {
+      id: 'prod-12',
+      name: 'Ostical-D Tablets',
+      rating: 4.5,
+      reviews: 98,
+      originalPrice: 1120,
+      discountedPrice: 1010,
+      image: '/assets/products/product-7.jpeg',
+      description: 'Bone health supplement formulated with Calcium Carbonate, Magnesium, Zinc, Vitamin D3, and Vitamin K. Helps remove joint pain and support the development of healthy bones & teeth, and supports the maintenance of strong bones.',
+      inStock: true
+    },
+    {
+      id: 'prod-13',
+      name: 'Zincoo ZINC',
+      rating: 4.6,
+      reviews: 87,
+      originalPrice: 950,
+      discountedPrice: 855,
+      image: '/assets/products/product-10.jpeg',
+      description: 'High-quality zinc supplement formulated with Zinc Gluconate 50mg per serving. Supports immune function, promotes skin health, and aids in cell growth. Manufactured by Biomed with natural ingredients for optimal absorption.',
+      inStock: true
+    },
+    {
+      id: 'prod-14',
+      name: 'Ostical-D Tablets',
+      rating: 4.5,
+      reviews: 98,
+      originalPrice: 1120,
+      discountedPrice: 1010,
+      image: '/assets/products/product-11.jpeg',
+      description: 'Bone health supplement formulated with Calcium Carbonate, Magnesium, Zinc, Vitamin D3, and Vitamin K. Helps remove joint pain and support the development of healthy bones & teeth, and supports the maintenance of strong bones.',
+      inStock: true
+    },
+    {
+      id: 'prod-15',
+      name: 'Glutamed L-Glutathione with Vitamin C',
+      rating: 4.8,
+      reviews: 203,
+      originalPrice: 4300,
+      discountedPrice: 3870,
+      image: '/assets/products/product-9.jpeg',
+      description: 'Dietary supplement combining L-Glutathione with Vitamin C for enhanced antioxidant effects. Promotes skin lightening, supports natural detoxification, and aids in reducing signs of aging.',
+      inStock: true
+    },
+    {
+      id: 'prod-16',
+      name: 'Bio-12 Tablets (Mecobalamin 2000mcg)',
+      rating: 4.7,
+      reviews: 134,
+      originalPrice: 1420,
+      discountedPrice: 1280,
+      image: '/assets/products/product-8.jpeg',
+      description: 'Dietary supplement containing Mecobalamin 2000mcg, a form of Vitamin B12. Supports nerve health, energy metabolism, and red blood cell production. Promoted for nervous system maintenance and increased body energy.',
+      inStock: true
+    },
+    {
+      id: 'prod-17',
+      name: 'Bomega Omega-3 500mg Capsule',
+      rating: 4.9,
+      reviews: 267,
+      originalPrice: 1590,
+      discountedPrice: 1430,
+      image: '/assets/products/product-12.jpeg',
+      description: 'Premium dietary supplement providing 500mg of high-quality Omega-3 fish oil per capsule. Supports heart health, enhances brain function, and promotes joint mobility. Each bottle contains 30 softgel capsules.',
+      inStock: true
     }
   ];
 
@@ -195,7 +262,7 @@ const ProductsPage = ({ addToCart }) => {
                 <h3 className="font-bold text-lg mb-4">AVAILABILITY</h3>
                 <label className="flex items-center gap-2 mb-2">
                   <input type="checkbox" className="w-4 h-4" defaultChecked />
-                  <span className="text-sm">In Stock (11)</span>
+                  <span className="text-sm">In Stock (17)</span>
                 </label>
                 <label className="flex items-center gap-2">
                   <input type="checkbox" className="w-4 h-4" />

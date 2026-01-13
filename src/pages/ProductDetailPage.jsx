@@ -373,6 +373,168 @@ const ProductDetailPage = ({ addToCart }) => {
         { name: 'Alpha Lipoic Acid', amount: '25 mg' }
       ]
     },
+    'prod-12': {
+      id: 'prod-12',
+      name: 'Ostical-D Tablets',
+      rating: 4.5,
+      reviews: 98,
+      questions: 5,
+      originalPrice: 1120,
+      discountedPrice: 1010,
+      images: [
+        '/assets/products/product-7.jpeg'
+      ],
+      packSize: '30 Tablets',
+      wellnessCoins: 1010,
+      inStock: true,
+      helps: [
+        'Help remove joint pain and support the development of healthy bones & teeth',
+        'Support the maintenance of strong bones',
+        'Provides essential nutrients for bone health including Calcium, Magnesium, Zinc, Vitamin D3, and Vitamin K'
+      ],
+      details: 'Ostical-D Tablets are a bone health supplement manufactured by Biomed Innovation Pharmaceuticals. The product is formulated with Calcium Carbonate, Magnesium, Zinc, Vitamin D3, and Vitamin K, designed to help remove joint pain and support the development of healthy bones & teeth, and support the maintenance of strong bones. Pack of 30 tablets per box.',
+      directions: 'Take as directed by a physician. Do not exceed the recommended dose. Consult a healthcare professional if you are pregnant, breastfeeding, or taking other medicines.',
+      ingredients: [
+        { name: 'Calcium Carbonate', amount: 'As per formulation' },
+        { name: 'Magnesium', amount: 'As per formulation' },
+        { name: 'Zinc', amount: 'As per formulation' },
+        { name: 'Vitamin D3', amount: 'As per formulation' },
+        { name: 'Vitamin K', amount: 'As per formulation' }
+      ]
+    },
+    'prod-13': {
+      id: 'prod-13',
+      name: 'Zincoo ZINC',
+      rating: 4.6,
+      reviews: 87,
+      questions: 4,
+      originalPrice: 950,
+      discountedPrice: 855,
+      images: [
+        '/assets/products/product-10.jpeg'
+      ],
+      packSize: 'As per packaging',
+      wellnessCoins: 855,
+      inStock: true,
+      helps: [
+        'Boosts immune system performance',
+        'Enhances skin health and appearance',
+        'Supports cellular growth and repair'
+      ],
+      details: 'Zincoo ZINC is a high-quality zinc supplement formulated with Zinc Gluconate 50mg per serving. It supports immune function, promotes skin health, and aids in cell growth. The product is manufactured by Biomed, emphasizing natural ingredients for optimal absorption. Key benefits include boosting immune system performance, enhancing skin health and appearance, and supporting cellular growth and repair.',
+      directions: 'As a dietary supplement, take as directed by a healthcare professional. Do not exceed the recommended dose. Consult a healthcare professional if you are pregnant, breastfeeding, or taking other medicines.',
+      ingredients: [
+        { name: 'Zinc Gluconate', amount: '50 mg' }
+      ]
+    },
+    'prod-14': {
+      id: 'prod-14',
+      name: 'Ostical-D Tablets',
+      rating: 4.5,
+      reviews: 98,
+      questions: 5,
+      originalPrice: 1120,
+      discountedPrice: 1010,
+      images: [
+        '/assets/products/product-11.jpeg'
+      ],
+      packSize: '30 Tablets',
+      wellnessCoins: 1010,
+      inStock: true,
+      helps: [
+        'Help remove joint pain and support the development of healthy bones & teeth',
+        'Support the maintenance of strong bones',
+        'Provides essential nutrients for bone health including Calcium, Magnesium, Zinc, Vitamin D3, and Vitamin K'
+      ],
+      details: 'Ostical-D Tablets are a bone health supplement manufactured by Biomed Innovation Pharmaceuticals. The product is formulated with Calcium Carbonate, Magnesium, Zinc, Vitamin D3, and Vitamin K, designed to help remove joint pain and support the development of healthy bones & teeth, and support the maintenance of strong bones. Pack of 30 tablets per box.',
+      directions: 'Take as directed by a physician. Do not exceed the recommended dose. Consult a healthcare professional if you are pregnant, breastfeeding, or taking other medicines.',
+      ingredients: [
+        { name: 'Calcium Carbonate', amount: 'As per formulation' },
+        { name: 'Magnesium', amount: 'As per formulation' },
+        { name: 'Zinc', amount: 'As per formulation' },
+        { name: 'Vitamin D3', amount: 'As per formulation' },
+        { name: 'Vitamin K', amount: 'As per formulation' }
+      ]
+    },
+    'prod-15': {
+      id: 'prod-15',
+      name: 'Glutamed L-Glutathione with Vitamin C',
+      rating: 4.8,
+      reviews: 203,
+      questions: 12,
+      originalPrice: 4300,
+      discountedPrice: 3870,
+      images: [
+        '/assets/products/product-9.jpeg'
+      ],
+      packSize: '30 Capsules',
+      wellnessCoins: 3870,
+      inStock: true,
+      helps: [
+        'Skin Lightening: helps improve skin tone and brightness',
+        'Detoxification: supports the body\'s natural detox processes',
+        'Anti-Aging: aids in reducing signs of aging'
+      ],
+      details: 'Glutamed L-Glutathione with Vitamin C is a dietary supplement manufactured by Biomed Innovation Pharmaceuticals Pvt Ltd. The product is packaged in a bottle of 30 capsules and is promoted for skin benefits, including skin lightening to help improve skin tone and brightness, detoxification to support the body\'s natural detox processes, and anti-aging to aid in reducing signs of aging. The formulation combines L-Glutathione with Vitamin C for enhanced antioxidant effects.',
+      directions: 'Take as directed by a physician. Do not exceed the recommended dose. Consult a healthcare professional if you are pregnant, breastfeeding, or taking other medicines.',
+      ingredients: [
+        { name: 'L-Glutathione', amount: 'As per formulation' },
+        { name: 'Vitamin C', amount: 'As per formulation' }
+      ]
+    },
+    'prod-16': {
+      id: 'prod-16',
+      name: 'Bio-12 Tablets (Mecobalamin 2000mcg)',
+      rating: 4.7,
+      reviews: 134,
+      questions: 6,
+      originalPrice: 1420,
+      discountedPrice: 1280,
+      images: [
+        '/assets/products/product-8.jpeg'
+      ],
+      packSize: 'As per packaging',
+      wellnessCoins: 1280,
+      inStock: true,
+      helps: [
+        'Supports nervous system function and energy levels',
+        'Promotes healthy red blood cells',
+        'Supports nerve health and energy metabolism'
+      ],
+      details: 'Bio-12 is a dietary supplement in tablet form containing Mecobalamin 2000mcg, a form of Vitamin B12. It supports nerve health, energy metabolism, and red blood cell production. The product is manufactured by Biomed Pharmaceuticals and is promoted for nervous system maintenance and increased body energy. Key features include Mecobalamin 2000mcg per tablet, supports nervous system function and energy levels, promotes healthy red blood cells, and tablet form for easy consumption.',
+      directions: 'Take as directed by a physician. Do not exceed the recommended dose. Consult a healthcare professional if you are pregnant, breastfeeding, or taking other medicines.',
+      ingredients: [
+        { name: 'Mecobalamin', amount: '2000 mcg' }
+      ]
+    },
+    'prod-17': {
+      id: 'prod-17',
+      name: 'Bomega Omega-3 500mg Capsule',
+      rating: 4.9,
+      reviews: 267,
+      questions: 15,
+      originalPrice: 1590,
+      discountedPrice: 1430,
+      images: [
+        '/assets/products/product-12.jpeg'
+      ],
+      packSize: '30 Capsules',
+      wellnessCoins: 1430,
+      inStock: true,
+      helps: [
+        'Heart Health: Supports cardiovascular function and helps maintain healthy triglyceride levels',
+        'Brain Function: Enhances cognitive performance and mental clarity',
+        'Joint Support: Promotes joint mobility and reduces inflammation'
+      ],
+      details: 'Bomega Omega-3 500mg is a premium dietary supplement manufactured by BioMed Innovation Pharmaceuticals (Pvt) Ltd. Each bottle contains 30 softgel capsules, providing 500mg of high-quality Omega-3 fish oil per capsule. Key benefits include supporting heart health by maintaining cardiovascular function and healthy triglyceride levels, enhancing brain function for better cognitive performance and mental clarity, and promoting joint support for improved mobility and reduced inflammation. Ingredients include fish oil (EPA & DHA), gelatin, glycerin, and purified water. Packaging: Black bottle with a white cap; label highlights heart, brain, and joint health icons along with a fish & oil droplet graphic. Consult a physician before use if you are pregnant, nursing, or on medication. Not suitable for those with fish or shellfish allergies.',
+      directions: 'Take 1 capsule daily with meals, or as directed by a healthcare professional. Do not exceed the recommended dose. Consult a physician before use if you are pregnant, nursing, or on medication. Not suitable for those with fish or shellfish allergies.',
+      ingredients: [
+        { name: 'Fish oil (EPA & DHA)', amount: '500 mg per capsule' },
+        { name: 'Gelatin', amount: 'As per formulation' },
+        { name: 'Glycerin', amount: 'As per formulation' },
+        { name: 'Purified water', amount: 'As per formulation' }
+      ]
+    },
   };
 
   // Get current product based on URL parameter
@@ -478,6 +640,60 @@ const ProductDetailPage = ({ addToCart }) => {
       originalPrice: 2500,
       discountedPrice: 2250,
       image: '/assets/products/product-6.jpeg'
+    },
+    {
+      id: 'prod-12',
+      name: 'Ostical-D Tablets',
+      rating: 4.5,
+      reviews: 98,
+      originalPrice: 1120,
+      discountedPrice: 1010,
+      image: '/assets/products/product-7.jpeg'
+    },
+    {
+      id: 'prod-13',
+      name: 'Zincoo ZINC',
+      rating: 4.6,
+      reviews: 87,
+      originalPrice: 950,
+      discountedPrice: 855,
+      image: '/assets/products/product-10.jpeg'
+    },
+    {
+      id: 'prod-14',
+      name: 'Ostical-D Tablets',
+      rating: 4.5,
+      reviews: 98,
+      originalPrice: 1120,
+      discountedPrice: 1010,
+      image: '/assets/products/product-11.jpeg'
+    },
+    {
+      id: 'prod-15',
+      name: 'Glutamed L-Glutathione with Vitamin C',
+      rating: 4.8,
+      reviews: 203,
+      originalPrice: 4300,
+      discountedPrice: 3870,
+      image: '/assets/products/product-9.jpeg'
+    },
+    {
+      id: 'prod-16',
+      name: 'Bio-12 Tablets (Mecobalamin 2000mcg)',
+      rating: 4.7,
+      reviews: 134,
+      originalPrice: 1420,
+      discountedPrice: 1280,
+      image: '/assets/products/product-8.jpeg'
+    },
+    {
+      id: 'prod-17',
+      name: 'Bomega Omega-3 500mg Capsule',
+      rating: 4.9,
+      reviews: 267,
+      originalPrice: 1590,
+      discountedPrice: 1430,
+      image: '/assets/products/product-12.jpeg'
     }
   ];
 
